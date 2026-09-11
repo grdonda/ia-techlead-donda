@@ -63,24 +63,53 @@
 - Coletar e disponibilizar as evidências de desenvolvimento e testes necessárias para conclusão da tarefa.
 - Manter sua própria tarefa atualizada no Jira, incluindo status, comentários e informações relevantes sobre a execução.
 ## 2.3 Atuação do QA
-- Apoiar a análise da história identificando os testes funcionais necessários.
-- Apoiar o PM no refinamento quando houver necessidade relacionada a testes.
-- Apoiar o TL na estratégia e execução dos testes.
-- Identificar, solicitar ou orientar a obtenção e criação de massa de dados necessária aos testes.
-- Apoiar a execução dos testes funcionais nas plataformas aplicáveis.
-- Criar os cenários de testes funcionais da história.
-- Organizar os cenários de testes no Xray conforme domínio e assunto.
-- Associar os cenários de teste às execuções e planos correspondentes.
-- Organizar os testes no Xray Test Repository utilizando a estrutura definida pela squad.
-- Vincular os artefatos de teste à Fix Version correspondente à história.
-- Manter os artefatos de teste relacionados à história organizados e vinculados corretamente.
-- Padrões de Nomenclatura Jira/Xray:
-  - **Cenário de Teste (CT):** CT00N - <título>
-  - **Test Set (TS):** grupo de testes por assunto; podem existir vários Test Sets para a mesma história, no padrão TS - <assunto> para <JIRA-ID>.
-  - **Test Plan (TP):** plano de teste, no padrão TP - <JIRA-ID>.
-  - **Test Execution (TE):** plano de execução, no padrão TE - <JIRA-ID>.
-  - **JMeter:** <JIRA-ID>_<SRV-NAME>.jmx.
-  - **Fix Version:** <sprint> - <JIRA-ID>
+
+### Responsabilidades
+
+* Apoiar a análise da história, identificando os testes funcionais necessários.
+* Apoiar o PM no refinamento quando houver dúvidas, lacunas ou riscos relacionados a testes.
+* Apoiar o TL na definição da estratégia de testes.
+* Identificar riscos funcionais e possíveis impactos de regressão.
+* Identificar, solicitar ou orientar a obtenção e criação das massas de dados necessárias aos testes.
+* Criar os cenários de testes funcionais da história.
+* Apoiar a execução dos testes funcionais nas plataformas aplicáveis.
+* Identificar necessidades de testes de contrato, integração e carga quando aplicável.
+* Garantir que os cenários de teste estejam alinhados aos requisitos, regras de negócio e critérios de aceite da história.
+
+### Rastreabilidade
+
+* Relacionar os cenários de teste aos requisitos, regras de negócio ou critérios de aceite correspondentes.
+* Identificar requisitos, regras de negócio ou critérios de aceite sem cobertura de teste.
+* Identificar cenários de teste que não possuam requisito ou regra de negócio claramente relacionada.
+* Manter a rastreabilidade dos artefatos de teste conforme o processo definido pela squad.
+
+### Nomenclatura Jira/Xray
+
+As nomenclaturas abaixo são referências de padronização para os artefatos de teste utilizados pela squad.
+
+O cadastro, relacionamento e gerenciamento desses artefatos seguem o processo definido na plataforma Jira/Xray.
+
+* **Cenário de Teste (CT):** `CT00N - <título>`
+* **Test Set (TS):** `TS - <assunto> - <JIRA-ID>`
+* **Test Plan (TP):** `TP - <JIRA-ID>`
+* **Test Execution (TE):** `TE - <JIRA-ID>`
+* **JMeter:** `<JIRA-ID>_<SRV-NAME>.jmx`
+* **Fix Version:** `<sprint> - <JIRA-ID>`
+
+### Observações
+
+* As nomenclaturas devem seguir o padrão definido pela squad.
+* A definição das nomenclaturas não implica responsabilidade manual pela criação, associação ou manutenção desses artefatos na plataforma quando essas operações forem realizadas pelo processo ou funcionalidades do Jira/Xray.
+* A execução dos testes deve seguir o processo e as ferramentas definidas pela squad.
+* Informações não disponíveis ou não comprovadas devem ser tratadas como pendências e não devem ser assumidas como comportamento esperado.
+
+
+### Observações
+
+* A execução real dos testes deve seguir o processo e as ferramentas definidas pela squad.
+* A atuação de agentes de IA deve respeitar os limites de execução, alteração de código, acesso a ambientes e manipulação de dados definidos em suas respectivas instruções.
+* Informações não disponíveis ou não comprovadas devem ser tratadas como pendências e não devem ser assumidas como comportamento esperado.
+
 # 3. sprint
 ## 3.1 funcionamento
 - A Sprint possui duração de 2 semanas.

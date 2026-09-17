@@ -1,3 +1,13 @@
+---
+projeto: <PROJETO>
+jira: <JIRA-ID>
+etapa: matriz-cts
+status: pendente
+data-criacao: <AAAA-MM-DD HH:mm>
+data-atualizacao: <AAAA-MM-DD HH:mm>
+responsavel: qa
+---
+
 # Matriz de Testes
 
 ## Objetivo

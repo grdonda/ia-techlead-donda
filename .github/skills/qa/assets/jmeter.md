@@ -1,3 +1,13 @@
+---
+projeto: <PROJETO>
+jira: <JIRA-ID>
+etapa: jmeter
+status: pendente
+data-criacao: <AAAA-MM-DD HH:mm>
+data-atualizacao: <AAAA-MM-DD HH:mm>
+responsavel: qa
+---
+
 # Plano de Teste de Carga
 
 ## História
@@ -6,7 +16,6 @@
     Serviço: <SRV>
     Endpoint: <ENDPOINT>
     Método: <GET|POST|PUT|DELETE>
-
 
 ## Objetivo
 

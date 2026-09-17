@@ -1,3 +1,13 @@
+---
+projeto: <PROJETO>
+jira: <JIRA-ID>
+etapa: cts
+status: pendente
+data-criacao: <AAAA-MM-DD HH:mm>
+data-atualizacao: <AAAA-MM-DD HH:mm>
+responsavel: qa
+---
+
 # CT00N - TITULO
 
 Historia: `<JIRA-ID>`

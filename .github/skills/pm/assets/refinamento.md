@@ -1,10 +1,26 @@
-# <JIRA-ID> - Analise de Refinamento
+---
+projeto: <projeto>
+jira: <JIRA-ID>
+etapa: refinamento
+status: pendente
+data-criacao: <AAAA-MM-DD HH:mm>
+data-atualizacao: <AAAA-MM-DD HH:mm>
+responsavel: pm
+---
 
-## Identificacao
+# Refinamento: `<JIRA-ID>`
+
+## Status
+
+- Estado: `pendente` | `em andamento` | `aguardando usuário` | `concluído` | `bloqueado` | `desatualizado`
+- Responsável: PM
+- Última atualização: `<AAAA-MM-DD HH:mm>`
+
+## Objetivo
 
 ## Dor ou Necessidade
 
-## Objetivo e Valor Esperado
+## Valor Esperado
 
 ## Escopo e Fora de Escopo
 
@@ -14,9 +30,9 @@
 
 ## Anexos e Referencias
 
-| Referencia | Localizacao | Situacao |
-| --- | --- | --- |
-|  |  | Confirmada / Nao localizada / Nao verificavel |
+|Referencia|Localizacao|Situacao|
+|---|---|---|
+|||Confirmada / Nao localizada / Nao verificavel|
 
 ## Plataformas, Feature Toggle e Family and Friends
 

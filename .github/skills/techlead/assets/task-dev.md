@@ -1,4 +1,14 @@
-# Task 00N - DEV - <TITULO>
+---
+projeto: <projeto>
+jira: <JIRA-ID>
+etapa: task-dev
+status: pendente
+data-criacao: <AAAA-MM-DD HH:mm>
+data-atualizacao: <AAAA-MM-DD HH:mm>
+responsavel: techlead
+---
+
+# Task 00N - DEV - `<TITULO>`
 
 ## Descricao Tecnica
 

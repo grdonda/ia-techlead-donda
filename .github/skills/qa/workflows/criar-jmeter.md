@@ -6,15 +6,17 @@ Criar a especificação e o plano de teste de carga para o fluxo implementado na
 
 O processo utiliza:
 
-* `skills/qa/assets/jmeter.md` como modelo da especificação.
-* `.jmx` corporativo em `skills/qa/assets/` como referência técnica.
+* `../assets/jmeter.md` como modelo da especificação.
+* `.jmx` corporativo em `../assets/` como referência técnica, quando disponível.
 * História e task como fonte do objetivo e escopo.
 * OpenAPI, curl, código e demais arquivos de contexto como fontes técnicas.
 
-O resultado esperado é a criação de dois artefatos:
+Quando o template corporativo estiver disponível, o resultado esperado é a criação de dois artefatos:
 
 * `<JIRA-ID>-jmeter.md` — especificação do teste.
 * `<JIRA-ID>-<SRV>-<SQUAD>.jmx` — plano JMeter específico da história.
+
+Sem o template corporativo, criar somente a especificação `.md`, registrar a pendência e aguardar o template antes de criar o `.jmx`.
 
 ---
 
@@ -46,8 +48,7 @@ Analisar:
 
 Quando necessário:
 
-* Utilizar a skill PM para entendimento da história.
-* Utilizar a skill DEV para entendimento da implementação.
+* Consultar os artefatos PM e DEV quando existirem.
 
 O teste deve representar somente o fluxo relacionado à história.
 
@@ -57,7 +58,7 @@ O teste deve representar somente o fluxo relacionado à história.
 
 Localizar os arquivos de referência disponíveis em:
 
-`skills/qa/assets/`
+`../assets/`
 
 Utilizar:
 
@@ -109,7 +110,7 @@ Não inventar informações.
 
 Utilizar:
 
-`skills/qa/assets/jmeter.md`
+`../assets/jmeter.md`
 
 como modelo.
 
@@ -119,7 +120,7 @@ Criar:
 
 no diretório:
 
-`dominios/<dominio>/historias/<JIRA-ID>/jmeter/`
+`dominios/<projeto>/historias/<JIRA-ID>/testes/jmeter/`
 
 A especificação deve registrar somente informações confirmadas.
 
@@ -208,9 +209,9 @@ Quando os critérios não estiverem disponíveis, registrar a pendência na espe
 
 ## 8. Analisar o template JMeter
 
-Localizar o `.jmx` corporativo em:
+Localizar o `.jmx` corporativo, quando disponível, em:
 
-`skills/qa/assets/`
+`../assets/`
 
 Analisar sua estrutura e identificar os componentes relevantes para reutilização.
 
@@ -227,7 +228,7 @@ Considerar:
 * Configurações de execução.
 * Outros componentes existentes no template.
 
-O template deve ser utilizado como referência.
+O template deve ser utilizado como referência quando estiver disponível. Se não estiver disponível, registre a pendência e não crie um `.jmx` por suposição.
 
 Não alterar o arquivo original.
 
@@ -235,7 +236,7 @@ Não alterar o arquivo original.
 
 ## 9. Criar o JMX da história
 
-Criar um novo `.jmx` a partir do template corporativo.
+Criar um novo `.jmx` a partir do template corporativo quando ele estiver disponível.
 
 Utilizar como referência:
 
@@ -260,7 +261,7 @@ Configurar o plano com:
 
 Criar o arquivo em:
 
-`dominios/<dominio>/historias/<JIRA-ID>/jmeter/`
+`dominios/<projeto>/historias/<JIRA-ID>/testes/jmeter/`
 
 Utilizar o padrão:
 
@@ -456,7 +457,7 @@ Antes de finalizar:
 * Não inventar dados.
 * Não inventar critérios de sucesso.
 * Não inventar configurações do Portal.
-* Não alterar `skills/qa/assets/jmeter.md`.
+* Não alterar `../assets/jmeter.md`.
 * Não alterar o template `.jmx` corporativo.
 * Utilizar evidências disponíveis antes de solicitar informações adicionais.
 * Registrar pendências quando uma informação não puder ser confirmada.

@@ -25,8 +25,7 @@ Antes de criar os cenários:
 
 Quando aplicável:
 
-* Utilizar a skill PM para entendimento da história.
-* Utilizar a skill DEV para análise do código relacionado.
+* Consultar os artefatos PM e DEV quando existirem.
 
 Não analisar arquivos sem relação com a demanda.
 
@@ -58,14 +57,14 @@ O cenário deve possuir:
 * Ação executada.
 * Resultado esperado.
 
-- Não combinar comportamentos independentes no mesmo CT.
-- Quando dois fluxos possuem regras ou resultados diferentes, criar CTs separados.
+* Não combinar comportamentos independentes no mesmo CT.
+* Quando dois fluxos possuem regras ou resultados diferentes, criar CTs separados.
 
 ## 4. Organização, arquivo e numeração dos cenários
 
 Todo cenário de teste deve ser criado dentro da estrutura:
 
-    dominios/<PROJETO>/historias/<JIRA-ID>/testes/<assunto>/<cenario>.md
+    dominios/<PROJETO>/historias/<JIRA-ID>/testes/<assunto>/cts/<cenario>.md
 
 ### Assunto
 
@@ -73,13 +72,13 @@ O `<assunto>` representa o agrupamento funcional do cenário.
 
 Exemplo:
 
-    dominios/<PROJETO>/historias/<JIRA-ID>/testes/cadastro/
-    dominios/<PROJETO>/historias/<JIRA-ID>/testes/consulta/
-    dominios/<PROJETO>/historias/<JIRA-ID>/testes/autenticacao/
+    dominios/<PROJETO>/historias/<JIRA-ID>/testes/cadastro/cts/
+    dominios/<PROJETO>/historias/<JIRA-ID>/testes/consulta/cts/
+    dominios/<PROJETO>/historias/<JIRA-ID>/testes/autenticacao/cts/
 
-- Utilizar um assunto existente quando ele representar corretamente o cenário.
-- Criar um novo assunto somente quando não existir um agrupamento adequado.
-- Não criar assuntos duplicados ou com nomes equivalentes.
+* Utilizar um assunto existente quando ele representar corretamente o cenário.
+* Criar um novo assunto somente quando não existir um agrupamento adequado.
+* Não criar assuntos duplicados ou com nomes equivalentes.
 
 ### Nome do arquivo
 
@@ -89,29 +88,25 @@ O arquivo deve seguir a nomenclatura:
 
 Exemplo:
 
-    dominios/<PROJETO>/historias/<JIRA-ID>/testes/cadastro/CT001 - cadastrar cliente.md
+    dominios/<PROJETO>/historias/<JIRA-ID>/testes/cadastro/cts/CT001 - cadastrar cliente.md
 
 O título do arquivo deve corresponder ao título definido dentro do cenário.
 
 ### Numeração
 
-- A numeração dos cenários é independente por assunto.
-- A contagem deve reiniciar em CT001 para cada assunto.
+* A numeração dos cenários é independente por assunto.
+* A contagem deve reiniciar em CT001 para cada assunto.
 
 Exemplo:
 
-```
-dominios/<PROJETO>/historias/<JIRA-ID>/testes/cadastro/
-├── CT001 - cadastrar cliente.md
-├── CT002 - alterar cliente.md
-└── CT003 - excluir cliente.md
-```
+    dominios/<PROJETO>/historias/<JIRA-ID>/testes/cadastro/cts/
+    ├── CT001 - cadastrar cliente.md
+    ├── CT002 - alterar cliente.md
+    └── CT003 - excluir cliente.md
 
-```
-dominios/<PROJETO>/historias/<JIRA-ID>/testes/consulta/
-├── CT001 - consultar cliente.md
-└── CT002 - consultar cliente inexistente.md
-```
+    dominios/<PROJETO>/historias/<JIRA-ID>/testes/consulta/cts/
+    ├── CT001 - consultar cliente.md
+    └── CT002 - consultar cliente inexistente.md
 
 Nesse caso, CT001 pode existir nos dois assuntos porque a sequência é controlada individualmente por assunto.
 
@@ -120,7 +115,7 @@ Nesse caso, CT001 pode existir nos dois assuntos porque a sequência é controla
 Antes de criar um cenário:
 
 1. Identificar o assunto.
-2. Verificar os arquivos existentes em dominios/<PROJETO>/historias/<JIRA-ID>/testes/<assunto>/.
+2. Verificar os arquivos existentes em `dominios/<PROJETO>/historias/<JIRA-ID>/testes/<assunto>/cts/`.
 3. Identificar o maior número de CT existente.
 4. Utilizar o próximo número após o maior CT existente.
 5. Caso não existam cenários no assunto, iniciar em CT001.
@@ -129,12 +124,10 @@ Exemplo:
 
 Se existirem:
 
-```
-dominios/<PROJETO>/historias/<JIRA-ID>/testes/cadastro/
-├── CT001 - cadastrar cliente.md
-├── CT002 - alterar cliente.md
-└── CT005 - excluir cliente.md
-```
+    dominios/<PROJETO>/historias/<JIRA-ID>/testes/cadastro/cts/
+    ├── CT001 - cadastrar cliente.md
+    ├── CT002 - alterar cliente.md
+    └── CT005 - excluir cliente.md
 
 O próximo cenário deve utilizar:
 
@@ -149,7 +142,7 @@ A sequência deve continuar a partir do maior CT existente.
 Antes de salvar o arquivo:
 
 * Confirmar que o assunto está correto.
-* Confirmar que a pasta historias/<JIRA-ID>/testes/<assunto>/ existe ou deve ser criada.
+* Confirmar que a pasta `dominios/<PROJETO>/historias/<JIRA-ID>/testes/<assunto>/cts/` existe ou deve ser criada.
 * Confirmar o próximo número do CT.
 * Confirmar que não existe outro arquivo com o mesmo CT no assunto.
 * Confirmar que o nome do arquivo corresponde ao título do cenário.
@@ -219,13 +212,11 @@ Utilizar Gherkin para descrever o cenário funcional.
 
 Formato:
 
-```
-Feature: <nome da funcionalidade>
-    Scenario: <nome do cenário>
-        Given <condição>
-        When <ação>
-        Then <resultado>
-```
+    Feature: <nome da funcionalidade>
+        Scenario: <nome do cenário>
+            Given <condição>
+            When <ação>
+            Then <resultado>
 
 O Gherkin deve representar o comportamento funcional completo do cenário.
 
@@ -245,11 +236,9 @@ O bloco Cucumber (xray) deve conter somente os passos necessários para cadastro
 
 Formato:
 
-```
-Given <condição>
-When <ação>
-Then <resultado>
-```
+    Given <condição>
+    When <ação>
+    Then <resultado>
 
 Não incluir:
 
@@ -267,9 +256,9 @@ Manter obrigatoriamente os campos definidos pelo template:
     Prioridade: HIGH
     Issue: <JIRA-ID>
 
-- Os valores devem ser preenchidos conforme as informações disponíveis para a história.
-- Não assumir informações que não estejam disponíveis.
-- Não criar novos campos.
+* Os valores devem ser preenchidos conforme as informações disponíveis para a história.
+* Não assumir informações que não estejam disponíveis.
+* Não criar novos campos.
 
 ## 12. Validação antes da entrega
 

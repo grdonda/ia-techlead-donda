@@ -4,7 +4,7 @@
 
 Criar a matriz de testes da história utilizando o asset:
 
-`skills/qa/assets/matriz.md`
+`../assets/matriz-cts.md`
 
 A matriz deve consolidar os requisitos, regras, critérios de aceitação e cenários de teste da história, mantendo a rastreabilidade entre esses elementos.
 
@@ -27,8 +27,7 @@ Analisar:
 
 Quando necessário:
 
-* Utilizar a skill PM para entendimento da história.
-* Utilizar a skill DEV para entendimento da implementação.
+* Consultar os artefatos PM e DEV quando existirem.
 
 Não inventar requisitos, regras ou critérios.
 
@@ -38,17 +37,17 @@ Não inventar requisitos, regras ou critérios.
 
 Localizar os CTs existentes em:
 
-`historias/<JIRA-ID>/testes/`
+`dominios/<PROJETO>/historias/<JIRA-ID>/testes/<assunto>/cts/`
 
 Identificar os assuntos existentes.
 
 Exemplo:
 
-`testes/cadastro/`
+`testes/cadastro/cts/`
 
-`testes/consulta/`
+`testes/consulta/cts/`
 
-`testes/autenticacao/`
+`testes/autenticacao/cts/`
 
 Utilizar os CTs existentes como fonte para preenchimento da matriz.
 
@@ -85,7 +84,7 @@ ou
 
 Utilizar obrigatoriamente:
 
-`skills/qa/assets/matriz.md`
+`../assets/matriz-cts.md`
 
 como modelo do artefato.
 
@@ -161,8 +160,8 @@ Não criar TS ou assunto sem evidência ou informação suficiente.
 Para cada grupo, preencher:
 
 | ID | CT Titulo | Descrição | Regra coberta | Cucumber |
-|---|---|---|---|---|
-| 001 | <CT Título> | <Descrição> | CA001 - <texto> | <Cucumber> |
+| --- | --- | --- | --- | --- |
+| 001 | `<CT Título>` | `<Descrição>` | `CA001 - <texto>` | `<Cucumber>` |
 
 Utilizar os dados existentes nos CTs.
 
@@ -204,7 +203,7 @@ Não criar CT neste workflow.
 
 Quando houver necessidade de novo cenário, registrar como gap ou TODO para posterior criação utilizando:
 
-`workflows/criar-cenarios.md`
+`workflows/criar-cts.md`
 
 ---
 
@@ -268,7 +267,7 @@ Não criar TODOs sem impacto real na cobertura.
 
 Antes de finalizar a matriz:
 
-* [ ] Asset `matriz.md` utilizado.
+* [ ] Asset `matriz-cts.md` utilizado.
 * [ ] JIRA-ID correto.
 * [ ] Sprint preenchido ou pendenciado.
 * [ ] Fix Version preenchido ou pendenciado.
@@ -291,7 +290,7 @@ Antes de finalizar a matriz:
 
 ## 15. Regras
 
-* Utilizar `skills/qa/assets/matriz.md` como modelo.
+* Utilizar `../assets/matriz-cts.md` como modelo.
 * Não alterar o asset original.
 * Não criar CTs neste workflow.
 * Não alterar CTs existentes.
@@ -303,7 +302,7 @@ Antes de finalizar a matriz:
 * Utilizar evidências disponíveis.
 * Registrar informações ausentes como pendência.
 * Preservar os cenários existentes.
-* Utilizar `workflows/criar-cenarios.md` quando um novo CT for necessário.
+* Utilizar `workflows/criar-cts.md` quando um novo CT for necessário.
 
 ---
 

@@ -1,4 +1,14 @@
-# Task 00N - <TITULO>
+---
+projeto: <projeto>
+jira: <JIRA-ID>
+etapa: task-jira
+status: pendente
+data-criacao: <AAAA-MM-DD HH:mm>
+data-atualizacao: <AAAA-MM-DD HH:mm>
+responsavel: techlead
+---
+
+# Task 00N - `<TITULO>`
 
 ## Descricao
 

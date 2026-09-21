@@ -14,15 +14,21 @@ responsavel: dev
 
 ## Diff ou Commit Avaliado
 
+## Aderencia a Historia e ao To-Be
+
 ## Achados
 
 ## Bugs e Regressoes
 
 ## Riscos e Impactos
 
-## Testes e Lacunas
+## Mensageria
 
 ## Observabilidade
+
+## Testes e Lacunas
+
+## Testes TDD
 
 ## Evidencias
 

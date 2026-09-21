@@ -47,3 +47,9 @@ responsavel: pm
 ## Observabilidade
 
 ## Pontos que Dependem de Esclarecimento
+
+## Historico de Atualizacoes
+
+|Data|Status|Responsavel|Observacao|
+|---|---|---|---|
+|||||

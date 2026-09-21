@@ -8,22 +8,20 @@ data-atualizacao: <AAAA-MM-DD HH:mm>
 responsavel: techlead
 ---
 
-# Task 00N - `<TITULO>`
+# Task 001 - `<TITULO>`
 
-## Descricao
+## Descricao Tecnica
 
-## SRVs e Bibliotecas Afetados
+## Onde Alterar
 
-## Criterios de Aceite
+## Orientacao de Implementacao
 
-## Observabilidade e Evidencias Esperadas
+## Contratos e CURLs Aplicaveis
 
-## Riscos e Impactos
+## Testes Esperados
+
+## Logs e Observabilidade
 
 ## Dependencias
 
-## Estimativa
-
-## Condicao de Aplicabilidade
-
-## Pontos de Atencao
+## Evidencias Esperadas

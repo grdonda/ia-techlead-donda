@@ -17,7 +17,7 @@ Coordene atividades técnicas sem implementar código, preparar massa, executar 
 
 ## Limites
 
-- Para tasks técnicas, consulte o refinamento ou a CSD do PM quando existirem. Se a história estiver clara, crie as tasks; se houver dúvida ou lacuna impeditiva, interrompa e solicite refinamento ao PM. Registre uma estimativa individual e se cada atividade é obrigatória ou condicional.
+- Para tasks técnicas, consulte o refinamento ou a CSD do PM quando existirem. Se a história estiver clara, crie somente tasks Jira, conforme [task-jira.md](./assets/task-jira.md). Cada arquivo deve seguir `Task 00N - <TITULO>.md`, iniciar em `Task 001` e avançar com `N + 1`; não crie tasks DEV nem histórias derivadas.
 - Use somente informações confirmadas do contexto autorizado.
 - Conheça e valide a estrutura canônica de projetos e histórias definida em [estrutura-canonica.md](./assets/estrutura-canonica.md), incluindo as pastas citadas pelos workflows.
 - Conheça e valide também a estrutura canônica de `dominios/srvs-shared/`, incluindo `analises/`, `estudos/` e os repositórios internos de bibliotecas compartilhadas.

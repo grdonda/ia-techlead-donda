@@ -5,10 +5,10 @@ etapa: task-dev
 status: pendente
 data-criacao: <AAAA-MM-DD HH:mm>
 data-atualizacao: <AAAA-MM-DD HH:mm>
-responsavel: techlead
+responsavel: dev
 ---
 
-# Task 00N - DEV - `<TITULO>`
+# Task 001 - DEV - `<TITULO>`
 
 ## Descricao Tecnica
 

@@ -39,7 +39,7 @@ Crie as tasks técnicas da história <JIRA-ID> do projeto <projeto>.
 
 ```text
 Analise tecnicamente o SRV ou a biblioteca <DEPENDENCIA> para a implementação da história <JIRA-ID> do projeto <projeto>.
-Crie a história técnica DEV da história <JIRA-ID> do projeto <projeto>.
+Crie a task DEV da história <JIRA-ID> do projeto <projeto>.
 Implemente a task DEV <TASK-ID> da história <JIRA-ID> do projeto <projeto>.
 Registre as evidências da implementação da task <TASK-ID>.
 Faça o code review da task <TASK-ID> da história <JIRA-ID> do projeto <projeto>.
@@ -87,7 +87,7 @@ Uma skill não aciona outra automaticamente. O usuário coordena a próxima etap
 
 - PM: refinamento, CSD, dúvidas, lacunas e suposições da história.
 - TechLead: estrutura, dependências, estudos de SRVs, bibliotecas e tasks.
-- DEV: análise técnica para implementação, história DEV, implementação autorizada, evidências e code review.
+- DEV: análise técnica para criação ou implementação de task DEV, evidências e code review.
 - QA: testabilidade, cenários funcionais, CT-DB, validação de testes, matriz de cobertura e carga.
 - DBA: contexto de banco, CSVs e massa SQL Server para CT/CT-DB autorizados.
 

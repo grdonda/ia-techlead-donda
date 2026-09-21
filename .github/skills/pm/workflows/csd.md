@@ -33,4 +33,4 @@ Matriz de Certeza, Suposições e Dúvidas de uma história `dominios/<projeto>/
 
 ## Artefatos
 
-- `dominios/<projeto>/historias/<JIRA-ID>/refinamento/<JIRA-ID>_csd-<DATA:aaaa-mm-dd-hh-mm>.md`
+- `dominios/<projeto>/historias/<JIRA-ID>/csd/<JIRA-ID>_csd-<DATA:aaaa-mm-dd-hh-mm>.md`

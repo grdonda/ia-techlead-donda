@@ -12,6 +12,7 @@ Organização da informação da história local `dominios/<projeto>/historias/<
   - microsserviços envolvidos e afetados
   - arquivos anexos e citados na historia
   - plataformas envolvidas
+  - SRVs, bibliotecas e integracoes envolvidos, nomeando cada um e seu papel na historia
   - dependências externas de negócio e técnicas
   - riscos e impactos identificados
   - Organizar a compreensão da história sem alterar a história oficial.

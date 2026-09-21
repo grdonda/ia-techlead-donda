@@ -1,6 +1,6 @@
 ---
 name: dev
-description: "Use ao analisar SRVs e bibliotecas, criar uma história técnica DEV para o Jira ou implementar uma task DEV autorizada, sempre dentro do contexto de uma história."
+description: "Use ao analisar SRVs e bibliotecas, criar uma task DEV ou implementar uma task DEV autorizada, sempre dentro do contexto de uma história."
 disable-model-invocation: false
 user-invocable: true
 ---
@@ -12,7 +12,7 @@ Atue somente sobre uma história, task DEV e repositorio autorizados. A raiz de 
 ## Subagentes
 
 - `dev-analista`: lê código e contexto autorizado, não edita arquivos e retorna análise, evidências, riscos e pendências.
-- `dev-operador`: registra a história técnica DEV ou implementa somente a task autorizada, atualiza o artefato persistido e não cria tasks do TechLead.
+- `dev-operador`: registra a análise autorizada ou cria/implementa somente a task DEV autorizada, atualiza o artefato persistido e não cria tasks do TechLead.
 
 ## Objetivo
 
@@ -51,13 +51,13 @@ Priorizar:
 
 ## Workflows
 
-### Criar história DEV para o Jira
+### Executar task DEV para o Jira
 
-[Workflow de criação de história DEV](./workflows/criar-historia-dev.md)
+[Workflow de criação de task DEV](./workflows/criar-historia-dev.md)
 
 ## Procedimento
 
-1. Confirme projeto, história, task DEV quando aplicável, repositorio, ambiente e autorização.
+1. Para criação, confirme projeto, história, repositório e autorização. Para implementação, confirme também a task DEV, o ambiente e a autorização.
 2. Leia a história, o refinamento, a CSD, a task DEV e o contexto necessário quando existirem.
 3. Use somente um workflow por vez e atualize `status`, `data-atualizacao`, `responsavel` e pendências no artefato persistido.
 4. Atue sob demanda e de forma assíncrona. Se houver dependência entre skills, informe o usuário e pergunte se deve prosseguir ou aguardar.
@@ -67,20 +67,20 @@ Quando a atividade corresponder a um workflow específico, utilize o workflow co
 
 ### Análise de sistemas
 
-[Workflow de análise](./workflows/analise.md)
+[Workflow de análise](./workflows/executar-analise.md)
 
 ### Desenvolvimento de microsserviços
 
-[Workflow de desenvolvimento de microsserviços](./workflows/desenvolvimento.md)
+[Workflow de desenvolvimento de microsserviços](./workflows/executar-desenvolvimento.md)
 
 ### Code Review
 
-[Workflow de Code Review](./workflows/code-review.md)
+[Workflow de Code Review](./workflows/executar-code-review.md)
 
 ## Limites
 
-- Não implemente sem task DEV e autorização explícita.
-- Não crie tasks Jira ou tasks DEV de responsabilidade do TechLead; crie somente a história técnica DEV prevista no workflow próprio.
+- Não implemente sem task DEV e autorização explícita. A criação da task DEV ocorre somente no workflow de criação próprio.
+- Não crie histórias derivadas nem tasks Jira. A task DEV é independente da task Jira, depende da mesma história para análise e segue o padrão `Task 00N - DEV - <TITULO>.md`, iniciando em `Task 001` e avançando com `N + 1`.
 - Não percorra outros projetos ou histórias.
 - Não altere contratos, requisitos ou arquivos fora do escopo autorizado.
 - Não execute comandos contra ambientes externos sem autorização explícita.

@@ -10,17 +10,35 @@ responsavel: dev
 
 # JIRA-ID - Analise DEV
 
-## Repositorio e Versao
+## As-Is (Estado Atual)
 
-## Configuracoes e Dependencias
+### Repositorio e Versao
 
-## Entradas e Saidas
+### Configuracoes e Dependencias
 
-## Comunicacoes e Contratos
+### Entradas e Saidas
 
-## Fluxo de Dados
+### Comunicacoes e Contratos (Quem Chama e Quem e Chamado)
 
-## Componentes Impactados
+### Integracoes Redis, Kafka e Mensageria
+
+### Fluxo de Dados
+
+### Validacoes e Classificacoes
+
+### Componentes Impactados
+
+## To-Be (Alteracao Tecnica Necessaria)
+
+### Alteracoes Extraidas da Historia
+
+### Impactos e Mudancas em Contrato
+
+### Validacoes Necessarias nos Fluxos
+
+### Mensageria e Observabilidade Necessarias
+
+### Riscos de Uso de Bibliotecas (ex.: conversao de datas/timestamp Jackson)
 
 ## Riscos e Pendencias
 

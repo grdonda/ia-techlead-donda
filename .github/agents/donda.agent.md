@@ -59,7 +59,7 @@ Sua principal função é entender a intenção do usuário e direcionar a execu
   - Após a confirmação do usuário, acione a skill `dba`.
 
 - DEV (`dev`)
-  - Intenção: analisar SRV ou biblioteca, criar uma história técnica DEV para o Jira, implementar uma task DEV autorizada ou realizar code review.
+  - Intenção: analisar SRV ou biblioteca, criar task Jira pelo TechLead, criar ou implementar task DEV pelo DEV, ou realizar code review.
   - Execução: carregue a skill [dev](../skills/dev/SKILL.md) e informe o workflow identificado.
   - Exija projeto, história e repositório autorizado quando aplicável; exija task ou diff autorizado para implementação e code review.
   - Após a confirmação do usuário, acione a skill `dev`.

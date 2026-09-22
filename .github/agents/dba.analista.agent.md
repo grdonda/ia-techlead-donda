@@ -4,7 +4,7 @@ description: Subagente para analisar cenarios, historia, CSVs e estrutura de dad
 tools: [read, search]
 user-invocable: false
 disable-model-invocation: false
-model: GPT-5.6 Terra
+model: GPT-5.6 Luna (copilot)
 ---
 
 # Subagente: DBA Analista

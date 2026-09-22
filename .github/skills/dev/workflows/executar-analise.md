@@ -1,15 +1,36 @@
 # Análise DEV de Sistema
 
-Objetivo: analisar tecnicamente o SRV ou as libs mencionados na história, cobrindo as-is e to-be, com profundidade suficiente para explicar o contexto ao dev ou ao gerente, questionar riscos e entender impactos.
+## Objetivo
 
-1. Confirme projeto, história, task ou serviço, repositório autorizado e autorização de leitura.
-2. Leia a história e os artefatos mais recentes dentro de `dominios/<projeto>/historias/<JIRA-ID>/`.
-3. Leia `dominios/<projeto>/contexto/` somente quando a análise exigir informação do projeto e avise o usuário antes.
-4. Use o `dev-analista` para levantar o as-is do repositório autorizado, cobrindo: versões e configurações; contrato de entrada e retorno ao usuário; quem chama o serviço e quem ele chama; controllers, clients, services e repositories; fluxo de processamento com validações, verificações e classificações; comunicação com Redis e Kafka quando houver; riscos e observabilidade.
-5. Extraia da história o to-be ao confrontar com o as-is: alteracoes tecnicas necessarias; impactos nos componentes; mudancas de contrato (campo novo, removido, tipo alterado, versionamento, retrocompatibilidade e quem mais e afetado); validacoes adicionais exigidas nos fluxos; mensageria e observabilidade necessarias quando a historia exigir; riscos de uso de bibliotecas (ex.: conversao de datas/timestamp do Jackson).
-6. Entregue os achados ao `dev-operador` para registrar o asset [analise.md](../assets/analise.md) em `dominios/<projeto>/historias/<JIRA-ID>/contexto/<JIRA-ID>_analise-dev.md`.
-7. Marque o artefato como `concluído`, `aguardando usuário` ou `bloqueado`, atualize a data e pare.
+Analisar tecnicamente o SRV ou LIB necessário à história, definindo AS-IS, TO-BE, impactos, riscos e pendências.
 
-## Saida
+## Processo
 
-Informe o caminho do artefato persistido e as pendencias remanescentes.
+1. Confirme projeto, história, SRV/LIB, repositório autorizado e autorização de leitura.
+2. Leia a história e os artefatos necessários em `dominios/<projeto>/historias/<JIRA-ID>/`.
+3. Leia `dominios/<projeto>/contexto/` somente quando necessário e avise o usuário antes.
+4. Use o `dev-analista` para levantar o AS-IS e os elementos técnicos necessários à análise.
+5. Se o fluxo necessário não estiver conhecido, execute `executar-mapeamento-fluxo.md` e retorne à análise.
+6. Confronte o AS-IS com a história para definir o TO-BE, incluindo alterações, impactos, contratos, validações, mensageria, observabilidade e dependências.
+7. Use o `dev-operador` para registrar:
+
+`dominios/<projeto>/historias/<JIRA-ID>/contexto/<JIRA-ID>_analise-dev.md`
+
+## Regras
+
+* Analise somente o escopo da história.
+* Não implemente alterações.
+* Não redefina requisitos.
+* Considere somente informações confirmadas.
+* Registre como pendência o que não puder ser confirmado.
+* Quando utilizar o mapeamento de fluxo, aproveite os fluxos gerados como evidência técnica da análise.
+
+## Saída
+
+Atualize `status`, `data-atualizacao`, `responsavel` e pendências.
+
+Status:
+
+* `concluído`
+* `aguardando usuário`
+* `bloqueado`

@@ -1,48 +1,72 @@
-# Fluxo — <nome>
+# Fluxo — <identidade>
 
 ## Objetivo
 
-<descrição breve da funcionalidade>
+<Descrição objetiva da funcionalidade analisada.>
 
 ## Entrada
 
-* <endpoint/evento/consumer/job>
+- Origem: <Client, evento, consumer, job, API pública etc.>
+- Porta de entrada: <método + rota ou identificador>
+- Payload/Entrada: <dados confirmados>
+- Validação: <somente quando confirmada>
+- Evidência: <arquivo — classe/método/trecho>
 
 ## Flowchart
 
 ```mermaid
 flowchart TD
-    A["Entrada"] --> B["Componente"]
-    B --> C["Componente"]
-    C --> D["Saída"]
+    C1["Client"] --> C2["Controller / Handler"]
+    C2 --> C3["Service / Use Case"]
+    C3 --> C4["Componente"]
+    C4 --> C3
+    C3 --> C2
+    C2 --> C1
 ```
 
 ## Sequence
 
 ```mermaid
 sequenceDiagram
-    participant A as Entrada
-    participant B as Componente
-    participant C as Componente
-    participant D as Saída
+    participant Client
+    participant Controller
+    participant Service
+    participant Componente
 
-    A->>B: chamada
-    B->>C: chamada
-    C-->>B: retorno
-    B-->>A: resposta
+    Client->>Controller: Requisição
+    Controller->>Service: Operação
+    Service->>Componente: Chamada
+    Componente-->>Service: Resultado
+    Service-->>Controller: Resultado
+    Controller-->>Client: Resposta
 ```
 
-## Dependências
+## Dependências do Core
 
-* <serviço>
-* <banco>
-* <evento/mensageria>
+- <dependência externa concretamente confirmada>
+- Evidência: <arquivo — classe/método/configuração relacionada>
+
+## Aspectos Transversais
+
+- <aspecto transversal confirmado>
+- Efeito: <efeito confirmado>
+- Evidência: <arquivo — classe/método>
 
 ## Saída
 
-* <resposta/resultado>
-* <caminho de erro/exceção relevante, quando existir>
+- Resultado: <resultado confirmado>
+- HTTP: <código confirmado, quando aplicável>
+- Payload: <resposta confirmada, quando aplicável>
+- Evidência: <arquivo — classe/método/trecho>
+
+## Erros
+
+- Erro: <erro confirmado>
+- Origem: <origem confirmada>
+- Tratamento/Propagação: <comportamento confirmado>
+- Resposta: <resposta confirmada>
+- Evidência: <arquivo — classe/método/trecho>
 
 ## Pontos desconhecidos
 
-* <item>
+- <somente informações necessárias ao entendimento do fluxo que não puderam ser confirmadas>

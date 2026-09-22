@@ -1,19 +1,16 @@
-# SRVS Shared Domain
+# SRVS Shared
 
-Aqui ficam as bibliotecas compartilhadas internas usadas pelos demais microsservicos.
+Aqui ficam as bibliotecas compartilhadas internas usadas pelos demais microsservicos da pasta srvs.
 
 ## Estrutura canonica
 
-- `analises/`: analises tecnicas das bibliotecas.
 - `estudos/`: estudos consolidados das bibliotecas.
-- `<LIB-NAME>/`: repositorio interno da biblioteca, obtido do GitHub com autorizacao explicita.
+- `<LIB-NAME>/`: repositorio interno da biblioteca.
 
 ```markdown
 c:\workspace\java\workspace\
 └── dominios/
     ├── srvs-shared/
-    │   ├── analises/
-    │   │   └── <LIB-NAME>_analise.md
     │   ├── estudos/
     │   │   └── <LIB-NAME>_estudo.md
     │   └── <LIB-NAME>/

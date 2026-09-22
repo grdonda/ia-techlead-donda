@@ -2,322 +2,562 @@
 
 ## Objetivo
 
-Mapear os fluxos técnicos das funcionalidades solicitadas a partir do código e gerar artefatos individuais em Markdown, com representações `flowchart` e `sequence` em Mermaid.
+Mapear os fluxos funcionais principais das portas de entrada solicitadas e gerar um artefato individual por fluxo.
+
+O resultado deve explicar:
+
+```text
+o que entra
+→ por onde entra
+→ quem recebe
+→ quem orquestra
+→ quem é chamado
+→ o que retorna
+→ o que sai
+```
+
+O fluxo funcional e os aspectos transversais devem permanecer separados.
+
+## Execução Fechada
+
+Este workflow é uma operação fechada.
+
+Ao ser explicitamente executado pelo usuário:
+
+1. analisar;
+2. gerar Modelo Factual;
+3. persistir artefato;
+4. validar;
+5. reportar;
+6. encerrar.
+
+Não criar:
+
+- TODOs;
+- tarefas;
+- arquivos de evidência;
+- arquivos auxiliares;
+- próximas atividades.
+
+Não perguntar:
+
+- se deve persistir;
+- se deve extrair evidências;
+- se deve continuar;
+- se deve criar outro arquivo;
+- se deve executar uma etapa posterior.
+
+Não apresentar “próximo passo”.
+
+Somente interromper por bloqueio real.
+
+## Autorização
+
+A execução explícita deste workflow autoriza:
+
+- leitura do SRV autorizado;
+- análise dos fluxos;
+- criação/atualização dos artefatos de estudo;
+- validação dos artefatos.
+
+Não autoriza:
+
+- alteração de código;
+- criação de Tasks DEV;
+- geração de contratos;
+- geração de CURL;
+- E2E;
+- remoção destrutiva de artefatos.
 
 ## Processo
 
-1. Confirme o contexto autorizado.
-2. Identifique os pontos de entrada da funcionalidade:
-   - endpoint/controller;
-   - consumer/listener;
-   - evento;
-   - job.
-3. Considere cada ponto de entrada funcional como um fluxo técnico independente.
-4. Para uma entrada HTTP explicitamente informada, localize primeiro o método/controller pelo método HTTP e caminho exatos antes de realizar buscas amplas.
-5. Para cada ponto de entrada:
-   - delegue a análise ao `dev-analista`;
-   - receba um único `Modelo Factual`;
-   - determine a identidade canônica do fluxo;
-   - determine o artefato correspondente;
-   - aplique a política de reconciliação;
-   - delegue a persistência ao `dev-operador`.
-6. Use `assets/fluxo.md` como template estrutural do artefato.
-7. Preserve somente fatos confirmados pelo `Modelo Factual`.
-8. Valide Mermaid antes da persistência.
-9. Quando a execução for em massa, preserve a ordem dos fluxos identificados e dos artefatos gerados.
-10. Ao concluir, informe o resultado consolidado.
+1. Confirme o SRV autorizado.
+2. Identifique as portas de entrada dentro do escopo.
+3. Para cada porta:
+   1. identifique a identidade canônica;
+   2. identifique o grupo funcional;
+   3. identifique o caminho canônico;
+   4. delegue a análise ao `dev-analista`;
+   5. receba um único Modelo Factual;
+   6. aplique reconciliação;
+   7. delegue persistência ao `dev-operador`;
+   8. confirme o arquivo criado/atualizado;
+   9. valide o resultado.
+4. Conclua todos os fluxos possíveis dentro do escopo.
+5. Produza um resumo consolidado.
+6. Pare.
 
-## Identidade Canônica do Fluxo
+## Portas de Entrada
 
-A identidade canônica deve representar a entrada funcional, e não o nome do arquivo existente.
+Para microserviço:
+
+- endpoint HTTP;
+- consumer;
+- listener;
+- evento;
+- job.
+
+Para biblioteca Java/Spring Boot:
+
+- método público;
+- interface pública;
+- API pública;
+- bean funcional;
+- integração pública;
+- callback/handler público;
+- outro ponto de entrada efetivamente utilizável pela aplicação consumidora.
+
+Não assumir que todo projeto possui Controller.
+
+## Identidade Canônica
 
 ### HTTP
 
-Para endpoints HTTP, use:
-
 `<método HTTP> <rota normalizada>`
 
-Exemplos:
+Exemplo:
 
-- `POST /api/auth/login`
-- `GET /api/users/me`
-- `PATCH /api/users/{id}`
+```text
+POST /api/auth/login
+```
 
-### Consumer ou Listener
+### Consumer / Listener
 
-Use a combinação das informações que identificam inequivocamente a entrada consumidora, por exemplo:
+Usar combinação de:
 
 - tópico/fila;
 - evento;
-- handler/consumer quando necessário para desambiguação.
+- grupo;
+- handler.
 
 ### Evento
 
-Use o tipo do evento e o consumidor/handler quando necessário para identificar a entrada.
+Usar:
+
+- tipo;
+- consumidor/handler.
 
 ### Job
 
-Use o identificador funcional do job e seu trigger quando necessário para desambiguação.
+Usar:
 
-A identidade canônica deve ser derivada do ponto de entrada confirmado pelo `dev-analista`.
+- identificador;
+- trigger.
 
-## Política de Reconciliação de Artefatos
+### Biblioteca
 
-Para cada fluxo identificado, determine o estado do artefato correspondente.
+Usar:
 
-### Criar
+- classe/interface pública;
+- método público;
+- operação funcional.
 
-Crie um novo arquivo quando:
+A identidade deve representar a porta de entrada real.
 
-- o fluxo foi confirmado;
-- não existe artefato correspondente à mesma identidade canônica.
+## Organização
 
-Use:
+Formato:
 
-`estudos/<srv>/<ordem>-<srv>-<fluxo-identificado>.md`
+```text
+estudos/
+└── <srv-ou-biblioteca>/
+    ├── <grupo-funcional>/
+    │   └── <fluxo>.md
+    └── _transversal/
+```
 
-O nome deve ser normalizado em `kebab-case`.
+### Microserviço
+
+Exemplo:
+
+```text
+estudos/microservice_auth_java/auth/login.md
+estudos/microservice_auth_java/auth/refresh.md
+estudos/microservice_auth_java/auth/logout.md
+estudos/microservice_auth_java/users/me.md
+```
+
+### Grupo Funcional
+
+Para HTTP, derivar preferencialmente da rota.
+
+Exemplo:
+
+```text
+/api/auth/login
+→ auth
+
+/api/users/me
+→ users
+```
+
+Não usar o nome da classe como agrupamento quando a rota fornecer contexto funcional mais preciso.
+
+Não inventar grupo.
+
+## Nome do Artefato
+
+Preferir:
+
+```text
+login.md
+refresh.md
+logout.md
+register.md
+verify-email.md
+forgot-password.md
+reset-password.md
+me.md
+```
+
+Não usar prefixos numéricos como requisito.
+
+## Descoberta
+
+Mapear apenas portas de entrada.
+
+Não criar fluxos para:
+
+- Service;
+- Use Case;
+- Repository;
+- Component;
+- Filter;
+- Interceptor;
+- Rate Limit;
+- Auditoria;
+- Migration;
+- Configuration;
+- Bean de infraestrutura;
+- SecurityConfig;
+- RedisConfig;
+- Actuator;
+- Swagger;
+- OpenAPI.
+
+Esses elementos podem aparecer no contexto transversal quando relevantes.
+
+## Core Funcional
+
+Priorizar:
+
+```text
+Client
+→ porta de entrada
+→ Controller/Handler/API pública
+→ Service/Use Case
+→ colaboradores necessários
+→ persistência/integração necessária
+→ retornos
+→ porta de saída
+→ Client
+```
+
+Não exigir que toda implementação siga exatamente esse desenho.
+
+## Retornos
+
+Toda chamada síncrona relevante deve ter seu retorno mapeado quando confirmado.
+
+Exemplo:
+
+```text
+AuthService
+→ UserRepository
+← User
+
+AuthService
+→ JwtService
+← AccessToken
+
+AuthService
+→ RefreshTokenRepository
+← persistência confirmada
+
+AuthService
+→ AuthController
+← TokenResponse
+
+AuthController
+→ Client
+← HTTP 200
+```
+
+O `sequence` deve refletir essas idas e voltas.
+
+## DTOs e Entidades
+
+Não são participantes do sequence por padrão.
+
+Podem aparecer como:
+
+- payload;
+- argumento;
+- resultado;
+- resposta.
+
+## Aspectos Transversais
+
+Registrar separadamente quando relevantes.
+
+Exemplos:
+
+- Filter;
+- SecurityFilterChain;
+- RateLimit;
+- GlobalExceptionHandler;
+- Configuration;
+- Bean;
+- observabilidade;
+- tracing;
+- métricas.
+
+Não colocar automaticamente antes do Controller.
+
+## Erros
+
+Separar:
+
+### Fluxo principal
+
+```text
+entrada
+→ processamento
+→ retorno
+→ saída
+```
+
+### Caminho de erro
+
+```text
+operação
+→ erro/exceção confirmado
+→ tratamento/propagação confirmado
+→ resposta
+```
+
+Não simular chamadas inexistentes entre Service e ExceptionHandler.
+
+## Evidência
+
+A evidência deve ser coletada durante a análise.
+
+Não criar:
+
+```text
+evidencias/
+```
+
+por iniciativa própria.
+
+Não criar arquivo separado para trechos de método.
+
+Cada fato relevante deve possuir referência no Modelo Factual.
+
+O artefato final usa essas referências sem criar uma segunda etapa.
+
+## Configuração
+
+Configuração pode complementar evidência.
+
+Configuração isolada não prova execução.
+
+Exemplo:
+
+```text
+application.yml
+→ configura Redis
+```
+
+não prova:
+
+```text
+fluxo login → Redis
+```
+
+O uso deve ser confirmado pelo código.
+
+## Segredos
+
+Nunca reproduzir valores de:
+
+- secrets;
+- passwords;
+- tokens;
+- JWT secrets;
+- API keys;
+- private keys;
+- credenciais;
+- connection strings sensíveis.
+
+Registrar somente:
+
+```text
+configuração existente em <arquivo>; valor omitido por segurança.
+```
+
+## Reconciliação
+
+### Caminho Canônico
+
+O caminho canônico tem prioridade.
+
+Exemplo:
+
+```text
+estudos/microservice_auth_java/auth/login.md
+```
 
 ### Atualizar
 
-Atualize integralmente o arquivo existente quando:
+Atualizar integralmente quando:
 
-- a identidade canônica for exatamente a mesma;
-- o arquivo representar o mesmo fluxo funcional.
+- existir exatamente um artefato correspondente;
+- a identidade canônica for igual.
 
-A atualização deve substituir integralmente o conteúdo do arquivo.
+### Legado
 
-Não faça append, prepend ou edição parcial.
+Se existir:
+
+```text
+estudos/microservice_auth_java/02-post-api-auth-login.md
+```
+
+e o canônico for:
+
+```text
+estudos/microservice_auth_java/auth/login.md
+```
+
+então:
+
+1. não usar o legado como fonte factual;
+2. gerar/atualizar o canônico;
+3. preservar o legado;
+4. registrar `artefato legado não removido`.
 
 ### Conflito
 
-Considere como conflito quando:
+Quando houver:
 
-- existirem dois ou mais arquivos candidatos para a mesma identidade canônica;
-- não for possível determinar qual é o artefato oficial;
-- um arquivo existente possuir identidade incompatível com a entrada atual;
-- a relação entre o arquivo encontrado e o fluxo atual não puder ser confirmada.
+- múltiplos candidatos;
+- identidade incompatível;
+- ambiguidade;
 
-Em caso de conflito:
+não escolher automaticamente.
 
-1. não escolha arbitrariamente um arquivo;
-2. não sobrescreva arquivos candidatos;
-3. não remova arquivos;
-4. informe os candidatos encontrados;
-5. solicite decisão do usuário.
+Retornar:
 
-### Arquivo não correspondente
-
-Quando existir arquivo no diretório e ele não puder ser associado com segurança a nenhum fluxo identificado na execução:
-
-- não remova;
-- não sobrescreva;
-- não renomeie;
-- não reutilize;
-- registre como `artefato não reconciliado`.
-
-Arquivos não reconciliados não devem bloquear a geração de novos fluxos, salvo quando houver conflito de identidade.
+`aguardando decisão`.
 
 ### Remoção
 
-Não remova artefatos automaticamente durante o mapeamento.
+Não remover artefatos automaticamente.
 
-A remoção somente pode ocorrer quando o usuário autorizar explicitamente uma operação de limpeza ou reconciliação destrutiva.
-
-Exemplo de autorização:
-
-`reconciliar e remover artefatos órfãos`
-
-Sem essa autorização, preserve os arquivos e reporte-os.
-
-## Pergunta ao Usuário
-
-O workflow pode solicitar decisão ao usuário somente quando a decisão não puder ser determinada com segurança ou quando houver uma operação destrutiva.
-
-Pergunte quando:
-
-- houver conflito entre múltiplos artefatos candidatos;
-- houver ambiguidade sobre qual arquivo representa o fluxo;
-- houver solicitação de remoção de arquivos sem autorização explícita;
-- uma decisão de escopo for indispensável para continuar.
-
-Não pergunte quando:
-
-- o fluxo novo não possui artefato correspondente;
-- existe exatamente um artefato da mesma identidade canônica;
-- o comportamento de criar ou atualizar estiver determinado pelas regras deste workflow.
-
-A pergunta deve apresentar somente as opções necessárias para a decisão.
-
-## Descoberta de Fluxos
-
-1. Identifique somente os pontos de entrada solicitados.
-2. Em execução em massa, identifique todos os pontos de entrada funcionais do SRV autorizado.
-3. Não transforme estruturas internas em fluxos:
-   - Controller sem endpoint adicional;
-   - Service;
-   - Use Case;
-   - Component;
-   - Repository;
-   - Filter;
-   - Interceptor;
-   - Rate Limit;
-   - Auditoria;
-   - Migration.
-4. Não inclua entradas operacionais, como Actuator ou Swagger, salvo solicitação explícita.
-5. Não misture fluxos diferentes no mesmo arquivo.
-6. Cada endpoint HTTP deve possuir um fluxo individual.
-7. Cada consumer, listener, evento ou job que seja ponto de entrada deve possuir um fluxo individual.
-8. Não una endpoints distintos apenas porque pertencem à mesma jornada funcional.
-9. Não mapeie o projeto inteiro além do escopo autorizado.
-
-## Mapeamento Técnico
-
-Para cada fluxo:
-
-1. O `dev-analista` deve seguir somente as chamadas e interações realmente executadas.
-2. O `dev-analista` deve produzir um único `Modelo Factual`.
-3. O `Modelo Factual` é a única fonte de fatos do artefato.
-4. O `flowchart` representa a estrutura do caminho técnico.
-5. O `sequence` representa a ordem temporal das interações.
-6. Os dois diagramas representam o mesmo fluxo funcional, mas não precisam possuir as mesmas arestas.
-7. Preserve as pré-condições e dependências estruturais identificadas pelo `dev-analista`.
-8. Não transforme etapas condicionais ou sequenciais em caminhos paralelos.
-9. Caminhos de erro devem ser representados quando confirmados e relevantes.
-10. Erros e saídas devem utilizar nós concretos no Mermaid.
-11. Não utilize `subgraph`.
-12. Não invente relações, componentes ou comportamento.
-13. Quando uma relação não puder ser confirmada, registre `DESCONHECIDO`.
-
-## Dependências
-
-A seção `Dependências` deve conter somente recursos ou integrações externos ao limite do componente analisado e concretamente confirmados pelo `Modelo Factual`.
-
-Não classifique como dependência externa:
-
-- Controller;
-- Service;
-- Use Case;
-- Component;
-- Repository;
-- Filter;
-- Interceptor;
-- DTO;
-- entidade;
-- classe de domínio;
-- biblioteca interna;
-- framework interno;
-- abstração interna.
-
-Quando nenhuma dependência externa concreta estiver confirmada, escreva:
-
-`Nenhuma dependência externa confirmada.`
-
-Não inferira banco, cache, broker, Redis, Kafka ou outra infraestrutura apenas pela presença de bibliotecas, frameworks ou abstrações.
-
-## Configuração e Contratos
-
-O mapeamento de fluxo não deve gerar contratos externos ou CURL nesta etapa.
-
-Quando o fluxo contiver comunicação externa, o `dev-analista` pode registrar fatos confirmados sobre a comunicação no `Modelo Factual`, mas a extração formal do contrato pertence a workflow específico de contratos.
-
-Arquivos de configuração, como:
-
-- `application.properties`;
-- `application.yml`;
-- `application-*.properties`;
-- `application-*.yml`;
-
-podem complementar informações da comunicação, mas não provam isoladamente que uma integração participa do fluxo.
-
-A participação da integração deve ser confirmada pelo código executado.
+Remoção exige autorização explícita.
 
 ## Persistência
 
-Para cada fluxo confirmado:
+Para cada fluxo:
 
-1. escolha o artefato correspondente conforme a Política de Reconciliação;
-2. delegue a persistência ao `dev-operador`;
-3. informe ao operador:
-   - identidade canônica;
-   - operação determinada: `criar` ou `atualizar`;
-   - caminho do artefato;
-   - `Modelo Factual`;
-   - template;
-   - restrições relevantes;
-4. não permita que o operador altere a decisão de reconciliação;
-5. não permita que o operador invente fatos adicionais.
+1. determinar identidade;
+2. determinar grupo;
+3. determinar caminho;
+4. aplicar reconciliação;
+5. receber Modelo Factual;
+6. delegar ao `dev-operador`;
+7. confirmar existência do arquivo;
+8. validar o arquivo;
+9. registrar resultado.
 
-## Validação do Artefato
+O Operador não pode decidir outro caminho.
 
-Antes de considerar o fluxo concluído, confirme:
+## Critério de Conclusão
 
-1. Existe exatamente um arquivo correspondente à identidade do fluxo.
-2. O arquivo foi criado ou atualizado conforme a decisão do workflow.
-3. O arquivo segue `assets/fluxo.md`.
-4. Contém `flowchart TD`.
-5. Contém `sequenceDiagram`.
-6. Mermaid é sintaticamente válido.
-7. Não utiliza `subgraph`.
-8. O `flowchart` utiliza apenas nós concretos.
-9. O `sequence` utiliza somente participantes confirmados.
-10. Os diagramas representam o mesmo fluxo funcional.
-11. As dependências estruturais do fluxo foram preservadas.
-12. Os caminhos de erro confirmados foram representados.
-13. Dependências externas foram confirmadas no `Modelo Factual`.
-14. Nenhum componente interno foi classificado como dependência externa.
-15. Não existem trechos residuais de versão anterior.
-16. Não existem seções extras fora do template.
-17. Nenhum arquivo fora do escopo foi alterado.
+O fluxo individual só está concluído quando:
 
-Se a validação falhar:
+- Modelo Factual recebido;
+- artefato persistido;
+- arquivo confirmado no caminho esperado;
+- estrutura validada;
+- flowchart válido;
+- sequence válido;
+- retornos confirmados presentes;
+- core separado de transversal;
+- nenhuma informação sensível exposta.
 
-- marque o fluxo como `bloqueado`;
-- não faça correções fora do escopo;
-- registre o motivo.
+O workflow inteiro só está concluído quando todos os fluxos possíveis do escopo forem processados ou explicitamente bloqueados.
+
+## Bloqueios
+
+Bloquear somente por:
+
+- contexto insuficiente;
+- porta de entrada não determinável;
+- conflito de artefatos;
+- caminho impossível de determinar;
+- requisito estrutural não atendido;
+- parser Mermaid real indisponível;
+- falha de persistência;
+- outro impedimento efetivo.
+
+Não transformar qualquer incerteza em nova tarefa.
+
+## Execução em Massa
+
+Quando vários fluxos forem encontrados:
+
+- cada fluxo é independente;
+- cada fluxo possui seu próprio Modelo Factual;
+- cada fluxo possui seu próprio artefato;
+- um bloqueio não invalida os demais;
+- preservar ordem das portas identificadas;
+- não misturar informações entre fluxos.
 
 ## Regras
 
-- Mapeie somente o escopo autorizado.
-- Não invente requisitos, dependências, relações ou comportamento.
-- Não redefina requisitos funcionais.
-- Não implemente código.
-- Não altere código-fonte do SRV.
-- Não acione outras skills.
-- Não execute contratos ou CURL neste workflow.
-- Não use conhecimento geral para completar informações ausentes.
-- Preserve evidências do código analisado.
-- Não sobrescreva um arquivo de identidade diferente.
-- Não remova arquivos sem autorização explícita.
-- Não tome decisões destrutivas por inferência.
-- Pare e solicite decisão quando existir conflito real.
-- Preserve artefatos não reconciliados e reporte-os.
-- Em execução em massa, trate cada fluxo independentemente.
+- mapear portas de entrada;
+- priorizar core funcional;
+- separar transversal;
+- preservar retornos;
+- não inventar;
+- não alterar código;
+- não criar arquivos auxiliares;
+- não criar TODOs;
+- não criar atividades futuras;
+- não perguntar para continuar;
+- não gerar contratos;
+- não gerar CURL;
+- não gerar E2E;
+- não remover artefatos sem autorização;
+- não expor segredos;
+- não usar artefato antigo como fonte factual.
 
 ## Saída
 
-### Execução Individual
+### Individual
 
-Informe:
+```text
+Fluxo: <identidade>
+Grupo: <grupo>
+Operação: criado | atualizado | bloqueado | aguardando usuário
+Arquivo: <caminho>
+Status: concluído | bloqueado
+Pendências: <somente quando existirem>
+```
 
-- identidade do fluxo;
-- operação: `criado`, `atualizado`, `bloqueado` ou `aguardando usuário`;
-- arquivo;
-- pendências.
+### Massa
 
-### Execução em Massa
+```text
+SRV: <srv>
+Entradas analisadas: <n>
+Criados: <n>
+Atualizados: <n>
+Bloqueados: <n>
+Conflitos: <n>
+Legados identificados: <n>
+Status: concluído | bloqueado
+Pendências: <somente quando existirem>
+```
 
-Informe:
-
-- quantidade de pontos de entrada identificados;
-- quantidade de fluxos criados;
-- quantidade de fluxos atualizados;
-- quantidade de fluxos bloqueados;
-- quantidade de conflitos;
-- quantidade de artefatos não reconciliados;
-- arquivos criados;
-- arquivos atualizados;
-- conflitos que exigem decisão;
-- pendências.
-
-Pare após a conclusão ou após uma decisão necessária do usuário.
+Não incluir “próximo passo”.

@@ -34,7 +34,7 @@ Analisar somente a atividade e o escopo delegados pelo workflow pai.
 
 ## Saída
 
-Retorne ao workflow pai:
+Retorne ao workflow pai somente os resultados aplicáveis à atividade executada, incluindo quando pertinentes:
 
 * `Achados`;
 * `Evidências`;

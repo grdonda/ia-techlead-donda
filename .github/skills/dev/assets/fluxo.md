@@ -41,6 +41,7 @@ sequenceDiagram
 ## Saída
 
 * <resposta/resultado>
+* <caminho de erro/exceção relevante, quando existir>
 
 ## Pontos desconhecidos
 

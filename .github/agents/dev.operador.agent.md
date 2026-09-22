@@ -32,8 +32,8 @@ Executar somente a operação delegada pelo workflow pai.
 * Não altere arquivos fora do escopo.
 * Não repita análise já realizada pelo `dev-analista`.
 * Se a autorização exigida não estiver presente, pare sem alterar arquivos.
-* Ao persistir mapeamento de fluxo, grave um arquivo por fluxo no caminho definido pelo workflow.
-* Não altere a estrutura do template `assets/fluxo.md`.
+* Ao persistir mapeamento de fluxo, crie um arquivo individual para cada fluxo no caminho definido pelo workflow.
+* Use `assets/fluxo.md` como template e não altere sua estrutura.
 
 ## Saída
 

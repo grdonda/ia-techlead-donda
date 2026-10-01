@@ -1,1 +1,0 @@
-# Estudo da Biblioteca Compartilhada 1

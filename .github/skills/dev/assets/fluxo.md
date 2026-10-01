@@ -1,72 +1,76 @@
-# Fluxo — <identidade>
+# Mapeamento de fluxo
 
-## Objetivo
+Mapeamento de fluxo de um microserviço ou lib
 
-<Descrição objetiva da funcionalidade analisada.>
+## Escopo
 
-## Entrada
+- Projeto: `<projeto ou Nao aplicavel>`
+- Serviço ou biblioteca: `<nome>`
+- Repositório: `<caminho no workspace>`
+- Endpoint ou operação: `<metodo e caminho ou nome da operacao>`
+- Branch: `<git branch analisada ou NAO VERIFICADO>`
 
-- Origem: <Client, evento, consumer, job, API pública etc.>
-- Porta de entrada: <método + rota ou identificador>
-- Payload/Entrada: <dados confirmados>
-- Validação: <somente quando confirmada>
-- Evidência: <arquivo — classe/método/trecho>
+## Entradas
 
-## Flowchart
+- Método e caminho do endpoint ou operação de entrada
+- Parâmetros de rota, query, headers e corpo, conforme identificados
+- Restrições de autenticação/autorização observadas, quando aplicável
+
+## Contratos
+
+- Request de entrada: `<método, caminho, query, headers, content type e corpo conforme expostos>`
+- Response de saída: `<status, headers, content type e corpo conforme expostos>`
+- Chamadas downstream: `<serviço/operação e request/response observados>`
+
+## Chamada cURL observada
+
+Incluir um comando cURL completo e copiável para cada endpoint, com método, URL, query e headers necessários. Quando houver corpo, incluir no cURL o `Content-Type` e o corpo com os campos e valores conforme os exemplos do repositório. Para valores dinâmicos, usar placeholder descritivo e indicar de onde obtê-lo, como o token retornado pelo login ou recebido por e-mail. Quando não houver corpo, declarar isso e não incluir `-d`. Swagger/OpenAPI é fonte complementar opcional: consultar se existir, sem bloquear a análise quando estiver ausente; se divergir do código, registrar a divergência e priorizar o comportamento confirmado no código. Se não houver informação suficiente para montar a chamada, registrar `NAO LOCALIZADO`.
+
+```sh
+<chamada cURL conforme exemplo localizado>
+```
+
+## Fluxo interno
+
+Descrever em ordem o processamento desde a entrada até o retorno. Incluir validações, decisões, transformações, persistência e chamadas externas somente quando localizadas nas fontes.
+
+## Fluxograma
+
+Representar a entrada, os passos internos relevantes, decisões, comunicações, caminhos de erro e retorno.
 
 ```mermaid
 flowchart TD
-    C1["Client"] --> C2["Controller / Handler"]
-    C2 --> C3["Service / Use Case"]
-    C3 --> C4["Componente"]
-    C4 --> C3
-    C3 --> C2
-    C2 --> C1
+    Entrada[Endpoint ou operacao de entrada] --> Processamento[Etapas confirmadas no codigo]
+    Processamento --> Retorno[Retorno observado]
 ```
 
-## Sequence
+## Diagrama de Sequencia
+
+Representar participantes, chamadas, respostas e retornos na ordem observada no código. Incluir caminhos de erro quando identificáveis.
 
 ```mermaid
 sequenceDiagram
-    participant Client
-    participant Controller
-    participant Service
-    participant Componente
-
-    Client->>Controller: Requisição
-    Controller->>Service: Operação
-    Service->>Componente: Chamada
-    Componente-->>Service: Resultado
-    Service-->>Controller: Resultado
-    Controller-->>Client: Resposta
+    actor Cliente
+    participant Entrada as Endpoint ou operacao
+    Cliente->>Entrada: Requisicao
+    Entrada-->>Cliente: Response observada
 ```
 
-## Dependências do Core
+## Erros e excecoes
 
-- <dependência externa concretamente confirmada>
-- Evidência: <arquivo — classe/método/configuração relacionada>
+- `<condicao, tratamento e retorno observados; ou NAO LOCALIZADO>`
 
-## Aspectos Transversais
+## Observabilidade
 
-- <aspecto transversal confirmado>
-- Efeito: <efeito confirmado>
-- Evidência: <arquivo — classe/método>
+- Logs, métricas, traces e identificadores de correlação encontrados: `<evidências ou NAO LOCALIZADO>`
 
-## Saída
+## Referencias do codigo
 
-- Resultado: <resultado confirmado>
-- HTTP: <código confirmado, quando aplicável>
-- Payload: <resposta confirmada, quando aplicável>
-- Evidência: <arquivo — classe/método/trecho>
+|Arquivo e linha|Papel no fluxo|
+|---|---|
+|||
 
-## Erros
+## Pendencias e limites do mapeamento
 
-- Erro: <erro confirmado>
-- Origem: <origem confirmada>
-- Tratamento/Propagação: <comportamento confirmado>
-- Resposta: <resposta confirmada>
-- Evidência: <arquivo — classe/método/trecho>
-
-## Pontos desconhecidos
-
-- <somente informações necessárias ao entendimento do fluxo que não puderam ser confirmadas>
+- Informação não confirmada: `<informação e motivo>`
+- Próxima evidência necessária: `<evidência ou Nao aplicavel>`

@@ -2,7 +2,7 @@
 
 ## Comportamento
 - Responda em português brasileiro, priorizando clareza, objetividade e soluções simples (KISS).
-- Respostas são dicotômicas (`sim`, `não`, `entendido`, `pronto`, `finalizado`) sempre que aplicável.
+- Respostas são dicotômicas.
 - A resposta ou explicação devem ser curtas, objetivas, no máximo 1 parágrafo de 5 linhas quando aplicável.
 
 ## Travas e Limites Inegociáveis

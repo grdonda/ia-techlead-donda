@@ -1,183 +1,53 @@
 ---
 name: dev
-description: "Skill DEV interna do Donda para analisar SRVs e bibliotecas, mapear fluxos, criar ou executar Tasks DEV autorizadas e realizar code review."
-disable-model-invocation: false
+description: "Habilidade para atuar como especialista em desenvolvimento de software, engenharia de software e arquitetura de software, troubleshooting e resolução de problemas complexos."
+argument-hint: "Pedido, historia, analise, troubleshooting, resolução de problemas complexos"
 user-invocable: false
+disable-model-invocation: false
 ---
 
 # DEV
 
 ## Objetivo
 
-Atuar tecnicamente sobre uma atividade autorizada por meio do workflow correspondente.
+Orientar o Donda a selecionar e executar o workflow DEV adequado ao pedido, sem substituir a análise do subagente responsável.
 
-Esta skill é interna e deve ser acionada pelo agente Donda.
+## Workflows disponíveis
 
-## Orquestração
+- [fluxo](./workflows/fluxo.md): usar para mapear a entrada, o processamento, as comunicações e as respostas de um endpoint, operação ou serviço.
+- [erros](./workflows/erros.md): usar quando o pedido relata uma falha e busca localizar sua ruptura e causa.
 
-Fluxo obrigatório:
+## Critérios de seleção
 
-```text
-Usuário
-  ↓
-Donda
-  ↓
-DEV
-  ↓
-Workflow DEV
-  ↓
-Subagente necessário
-  ↓
-Artefato / implementação
-```
+- Se o objetivo é entender como uma operação percorre o sistema, selecionar `fluxo`.
+- Se o objetivo é investigar um erro reportado, selecionar `erros`.
+- Comparar a intenção e as entradas disponíveis com o objetivo do workflow; não escolher somente por palavras-chave.
+- Se mais de um workflow parecer necessário, delimitar a sequência no plano. Não iniciar etapas fora do escopo autorizado.
 
-O usuário não deve acionar esta skill diretamente.
+## Pré-requisitos de roteamento
 
-Quando o Donda não estiver ativo, não execute workflows DEV e não simule sua execução.
+- Para `fluxo`, confirmar serviço ou biblioteca, repositório e endpoint/operação ou pedido explícito para mapear todas as entradas da aplicação.
+- Para `erros`, identificar o serviço onde o erro foi percebido, o relato e as evidências disponíveis.
+- Se faltar informação exigida pelo workflow, retornar ao Donda o bloqueio e o dado necessário; não presumir nem solicitar dados diretamente ao usuário.
 
-## Princípio de Execução
+## Plano para autorização
 
-O workflow selecionado define:
+- Antes da autorização, devolver ao Donda a intenção, o workflow escolhido, o objetivo, agentes definidos pelo workflow, entradas, asset, artefato de saída, etapas resumidas e pendências/bloqueios.
+- O Donda apresenta o plano ao usuário e aguarda autorização explícita.
 
-- escopo;
-- entradas;
-- passos;
-- artefatos;
-- regras;
-- critério de conclusão.
+## Após autorização
 
-A execução é fechada.
+- Após a autorização, orientar o Donda a seguir o workflow selecionado e encaminhar as entradas e o asset aos agentes nele definidos.
+- O analista realiza a análise; o Operador persiste artefatos somente quando o workflow determinar.
+- Não comunicar diretamente com o usuário durante o roteamento ou a execução.
 
-Após iniciar um workflow:
+## Status e continuidade
 
-1. execute somente o workflow selecionado;
-2. conclua as etapas definidas;
-3. valide o resultado;
-4. informe o resultado ao Donda;
-5. encerre.
-
-Não transformar uma pendência em uma nova atividade.
-
-Não propor próxima etapa.
-
-Não criar TODOs.
-
-Não solicitar nova autorização para uma etapa já autorizada pelo workflow.
-
-## Autorização
-
-A invocação explícita de um workflow pelo Donda autoriza as operações previstas dentro do escopo desse workflow.
-
-Isso não autoriza automaticamente:
-
-- alteração de código fora do escopo;
-- criação de Tasks DEV não previstas;
-- execução de outro workflow;
-- remoção destrutiva não prevista;
-- operações externas não previstas.
+- Ler o artefato mais recente antes de iniciar ou retomar uma etapa, conforme o workflow.
+- Usar o contrato global de status definido pelo Operador; não criar nem alterar estados.
+- Não alterar artefatos durante o roteamento.
 
 ## Subagentes
 
-### dev-analista
-
-Analisa somente a atividade delegada.
-
-Não edita arquivos.
-
-Não persiste artefatos.
-
-Não cria TODOs.
-
-Não cria atividades adicionais.
-
-### dev-operador
-
-Executa somente a operação delegada.
-
-Persiste somente os artefatos definidos pelo workflow.
-
-Não cria atividades adicionais.
-
-Não cria TODOs.
-
-Não solicita nova autorização para uma operação já autorizada.
-
-## Processo
-
-1. Receba a atividade delegada pelo Donda.
-2. Identifique o workflow correspondente.
-3. Execute somente o workflow selecionado.
-4. Delegue a análise ao `dev-analista`, quando definido.
-5. Delegue persistência ou implementação ao `dev-operador`, quando definido.
-6. Atualize somente os artefatos previstos.
-7. Valide o resultado.
-8. Retorne ao Donda:
-   - resultado;
-   - artefatos;
-   - status;
-   - pendências impeditivas.
-9. Pare.
-
-## Regras de Encerramento
-
-Após o critério de conclusão do workflow:
-
-- não continuar analisando;
-- não criar arquivos adicionais;
-- não criar TODOs;
-- não criar resumos não previstos;
-- não extrair evidências posteriormente;
-- não perguntar se deve continuar;
-- não sugerir próximo passo;
-- não executar outro workflow.
-
-Uma pendência somente deve ser reportada quando realmente impedir ou limitar a conclusão.
-
-## Regras
-
-- Atuar somente no escopo recebido do Donda.
-- Não inventar requisitos, dependências, relações ou comportamento.
-- Não alterar código sem autorização.
-- Não percorrer outros projetos ou histórias.
-- Não alterar arquivos fora do escopo.
-- Não executar operações externas não previstas.
-- Não acionar outras skills automaticamente.
-- Não criar TODOs por iniciativa própria.
-- Não criar artefatos auxiliares não previstos.
-- Não expor segredos, tokens, senhas, chaves ou credenciais.
-- Quando um valor sensível for necessário para contextualização, registrar apenas sua existência/origem e omitir o valor.
-
-## Workflows
-
-### Análise
-
-`./workflows/executar-analise.md`
-
-### Mapeamento de Fluxo
-
-`./workflows/executar-mapeamento-fluxo.md`
-
-### Criar Task DEV
-
-`./workflows/criar-historia-dev.md`
-
-### Desenvolvimento
-
-`./workflows/executar-desenvolvimento.md`
-
-### Code Review
-
-`./workflows/executar-code-review.md`
-
-## Saída para o Donda
-
-Ao concluir:
-
-```text
-Resultado: <descrição curta>
-Artefatos: <caminhos>
-Status: concluído | bloqueado | aguardando decisão
-Pendências: <somente quando existirem>
-```
-
-Pare após retornar o resultado ao Donda.
+- [dev-analista](../../agents/dev.analista.agent.md) -> Analista especializado em desenvolvimento de software.
+- [operador](../../agents/operador.agent.md) -> Responsável por gerar os artefatos necessários.

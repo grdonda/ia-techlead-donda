@@ -8,21 +8,39 @@ data-atualizacao: <AAAA-MM-DD HH:mm>
 responsavel: pm
 ---
 
-# Refinamento: `<JIRA-ID>`
+# Refinamento: `<JIRA-ID>` ou Titulo da historia do usuario
 
 ## Status
 
-- Estado: `pendente` | `em andamento` | `aguardando usuário` | `concluído` | `bloqueado` | `desatualizado`
+- Estado: `<status global definido pelo operador>`
 - Responsável: PM
 - Última atualização: `<AAAA-MM-DD HH:mm>`
 
-## Objetivo
+## Titulo
 
-## Dor ou Necessidade
+    titulo
 
-## Valor Esperado
+## Historia do usuario (descrição)
 
-## Escopo e Fora de Escopo
+    Eu como [persona],
+    Eu [quero que]
+    Para [que]
+
+## Objetivo ou Justificativa
+
+## Criterios de Aceite e Definition of Done
+
+## Regras de Negocio
+
+## Requisitos Funcionais RF
+
+## Requisitos Nao Funcionais RNF
+
+## Requisitos de regressão RRGS
+
+## Escopo
+
+## Fora de Escopo
 
 ## Premissas
 
@@ -34,22 +52,12 @@ responsavel: pm
 |---|---|---|
 |||Confirmada / Nao localizada / Nao verificavel|
 
-## Plataformas, Feature Toggle e Family and Friends
+## Plataformas
 
-## Regras de Negocio
+## Impactos
 
-## Requisitos Funcionais e Nao Funcionais
-
-## Criterios de Aceite e Definition of Done
-
-## Impactos, Regressoes, Dependencias e Riscos
+## Dependencias e Riscos
 
 ## Observabilidade
 
 ## Pontos que Dependem de Esclarecimento
-
-## Historico de Atualizacoes
-
-|Data|Status|Responsavel|Observacao|
-|---|---|---|---|
-|||||

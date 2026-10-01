@@ -1,0 +1,7 @@
+Timestamp: 2026-09-29T08:12:41Z
+Serviço: microservice-auth-java
+POD (ArgoCD): microservice-auth-java-7d5f9c6b8f-x2n4q
+trace_id: 7f3e1a2b4c5d6e7f8091a2b3c4d5e6f7
+conversation_id: conv-9f8e7d6c5b4a
+Texto do erro: java.lang.IllegalArgumentException: refreshToken must not be blank
+  at com.miraluh.authservice.token.RefreshTokenService.validate(RefreshTokenService.java:42)

@@ -1,47 +1,53 @@
 ---
 name: pm
-description: "Use ao refinar uma história Jira local, organizar sua compreensão, identificar ambiguidades, lacunas, referências ausentes, suposições ou dúvidas e preparar uma CSD para esclarecimento do PM."
-argument-hint: "Projeto e JIRA-ID"
-user-invocable: true
+description: "Habilidade para atuar como Product Manager, organizar a execução de workflows e gerenciar pedidos de negócio"
+argument-hint: "Refinamento, Matriz CSD, análise de historias"
+user-invocable: false
 disable-model-invocation: false
 ---
 
 # PM
 
-- Refine a história `dominios/<projeto>/historias/<JIRA-ID>/<JIRA-ID>.md` local.
-- Gere a matriz CSD quando houver suposições ou dúvidas.
-- Avalie e inventarie os anexos antes do refinamento ou da CSD quando ainda não houver inventário concluído.
-- Aguarde instruções para refazer o processo se necessário
+## Objetivo
+
+Orientar o Donda a selecionar e executar o workflow PM adequado ao pedido, sem substituir a análise do subagente responsável.
+
+## Workflows disponíveis
+
+- [csd](./workflows/executar-csd.md): usar para registrar e rastrear certezas, suposições, dúvidas, lacunas, conflitos e referências de um conteúdo já encaminhado por outro workflow.
+- [refinamento](./workflows/executar-refinamento.md): usar para transformar um relato ou história em User Story e refinamento estruturado.
+
+## Critérios de seleção
+
+- Se o pedido é validar o entendimento de um conteúdo já existente, identificando incertezas rastreáveis, selecionar `csd`.
+- Se o pedido é produzir ou atualizar a User Story e o refinamento a partir de um relato ou história, selecionar `refinamento`.
+- CSD não substitui refinamento, análise técnica, mapeamento de fluxo ou definição de solução; comparar a intenção e as entradas disponíveis antes de confirmar a seleção.
+- Se mais de um workflow parecer necessário, delimitar a sequência no plano. Não iniciar etapas fora do escopo autorizado.
+
+## Pré-requisitos de roteamento
+
+- Para `csd`, confirmar a fonte ou conteúdo a ser analisado e localizar o artefato CSD anterior, quando existir.
+- Para `refinamento`, identificar se a entrada é um relato local (`problema.md`) ou uma história com JIRA-ID, e localizar a fonte e o artefato anterior correspondente.
+- Se faltar informação exigida pelo workflow, retornar ao Donda o bloqueio e o dado necessário; não presumir nem solicitar dados diretamente ao usuário.
+
+## Plano para autorização
+
+- Antes da autorização, devolver ao Donda a intenção, o workflow escolhido, o objetivo, agentes definidos pelo workflow, entradas, asset, artefato de saída, etapas resumidas e pendências/bloqueios.
+- O Donda apresenta o plano ao usuário e aguarda autorização explícita.
+
+## Após autorização
+
+- Após a autorização, orientar o Donda a seguir o workflow selecionado e encaminhar as entradas e o asset aos agentes nele definidos.
+- O analista realiza a análise; o Operador persiste artefatos somente quando o workflow determinar.
+- Não comunicar diretamente com o usuário durante o roteamento ou a execução.
+
+## Status e continuidade
+
+- Ler o artefato mais recente antes de iniciar ou retomar uma etapa, conforme o workflow.
+- Usar o contrato global de status definido pelo Operador; não criar nem alterar estados.
+- Não alterar artefatos durante o roteamento.
 
 ## Subagentes
 
-- `pm-analista`: responsável por analisar a história e organizar a informação, identificar suposições, dúvidas.
-- `pm-operador`: responsável por garantir que todas as informações analisadas sejam corretamente documentadas.
-
-## Procedimento
-
-1. Confirme o arquivo `dominios/<projeto>/historias/<JIRA-ID>/<JIRA-ID>.md`; se o projeto ou a história não forem informados, solicite-os antes de prosseguir.
-2. Interprete a solicitação:
-   - `avaliar anexos`: execute o workflow de avaliação de anexos.
-   - `refinamento`: execute o workflow de refinamento.
-   - `analisar` ou `CSD`: execute o workflow de CSD.
-3. Para `refinamento` ou `CSD`, reutilize o inventário de anexos concluído; se ele não existir, solicite a execução de `avaliar anexos` antes de continuar.
-4. No workflow selecionado, acione o `pm-analista` para analisar a história.
-5. Entregue a análise do `pm-analista` ao `pm-operador` para preencher e salvar o artefato.
-6. Valide a existência do artefato no diretório correspondente e informe ao usuário o término.
-
-
-## Regras e Limites
-
-- A história `dominios/<projeto>/historias/<JIRA-ID>/<JIRA-ID>.md` deve existir, é imutável, e não deve ser alterada.
-- Mantenha informações não confirmadas classificadas como suposição ou dúvida.
-- Siga rigorosamente os formatos e procedimentos definidos nos workflows de refinamento e CSD.
-- Não altere o conteúdo da história original `dominios/<projeto>/historias/<JIRA-ID>/<JIRA-ID>.md`.
-
-## Status e Continuidade
-
-- Leia o artefato mais recente antes de iniciar ou retomar uma etapa.
-- Ao iniciar, marque `status: em andamento`; ao depender do usuário, use `aguardando usuário`.
-- Use `bloqueado` para pré-requisito ausente e `desatualizado` quando a entrada tiver mudado.
-- Ao concluir, marque `concluído`, atualize `data-atualizacao` e registre pendências remanescentes.
-- Salve o artefato e pare. Não acione TechLead, DBA ou outra skill automaticamente.
+- [pm-analista](../../agents/pm.analista.agent.md) -> Analista especializado em Product Management.
+- [operador](../../agents/operador.agent.md) -> Responsável por gerar os artefatos necessários.

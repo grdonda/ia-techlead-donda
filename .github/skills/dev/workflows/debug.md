@@ -1,4 +1,4 @@
-# Workflow: erros
+# Workflow: debug
 
 Troubleshooting de um erro reportado, a partir de evidências, até a causa raiz, a correção guiada e o report para o relator.
 
@@ -38,27 +38,24 @@ O agente não acessa o Dynatrace diretamente. Todo aprofundamento de evidência 
 ## Etapas
 
 1. Ler o pacote de evidência inicial e o relato; se faltar item essencial, solicitar apenas o item ausente ao Donda.
-2. Confirmar que a análise do serviço será feita na branch `main`; não usar uma branch de correção como fonte do diagnóstico.
-3. Gerar a primeira consulta DQL para reconstruir o distributed trace a partir do trace_id/conversation_id, cobrindo os serviços antes e depois do ponto onde o erro apareceu.
-4. Registrar cada consulta DQL proposta e o resultado colado pelo usuário; propor a próxima consulta mais direcionada até haver evidência suficiente para distinguir a causa (serviço que originou o dado incorreto ou ausente) da consequência (serviço onde a exceção estourou).
-5. Confirmar o ponto de ruptura e a causa raiz com base nas evidências correlacionadas por identificadores e janela de tempo.
-6. Verificar se o serviço identificado como causa raiz pertence à squad. Se não pertencer, registrar a triagem, redigir o report indicando o time ou serviço responsável pela correção e encerrar a investigação de código.
-7. Se pertencer à squad, o `dev-analista` lê o fluxo até o ponto de entrada, monta o cURL de reprodução e reproduz o erro localmente, documentando o resultado.
-8. Confirmada a reprodução, apresentar ao usuário o diagnóstico e a alteração proposta; aguardar autorização explícita antes de editar qualquer arquivo do repositório.
-9. Após autorizado, criar ou usar a branch oficial `feature/fix-<jira-id>`. Enquanto o Jira ainda não fornecer o ID, usar localmente `feature/fix-<titulo-curto>` apenas para implementar e testar.
-10. O `dev-analista` implementa a correção, avalia erros relacionados e fornece as instruções de teste ao usuário.
-11. Conduzir a validação guiada: aguardar o resultado do reteste relatado pelo usuário; se não confirmar sucesso, ajustar a correção e repetir até a consolidação.
-12. Propor a observabilidade pontual a ser adicionada no trecho corrigido e a consulta DQL para validar a correção em homologação.
-13. Atualizar o report com o erro, a causa, a solução, os erros relacionados avaliados, a observabilidade e o resumo para PR/comunicação.
-14. Encaminhar ao `operador` o resultado consolidado a partir do asset [report.md](../assets/report.md), preservando títulos e estrutura.
-15. Aguardar a confirmação do `operador` com o caminho e o status persistido; então retornar o resultado ao Donda.
+2. Gerar a primeira consulta DQL para reconstruir o distributed trace a partir do trace_id/conversation_id, cobrindo os serviços antes e depois do ponto onde o erro apareceu.
+3. Registrar cada consulta DQL proposta e o resultado colado pelo usuário; propor a próxima consulta mais direcionada até haver evidência suficiente para distinguir a causa (serviço que originou o dado incorreto ou ausente) da consequência (serviço onde a exceção estourou).
+4. Confirmar o ponto de ruptura e a causa raiz com base nas evidências correlacionadas por identificadores e janela de tempo.
+5. Verificar se o serviço identificado como causa raiz pertence à squad. Se não pertencer, registrar a triagem, redigir o report inicial indicando o time ou serviço responsável pela correção e encerrar a investigação de código.
+6. Se pertencer à squad, o `dev-analista` lê o fluxo até o ponto de entrada, monta o cURL de reprodução e reproduz o erro localmente, documentando o resultado.
+7. Confirmada a reprodução, apresentar ao usuário o diagnóstico e a alteração proposta; aguardar autorização explícita antes de editar qualquer arquivo do repositório.
+8. Após autorizado, o `dev-analista` implementa a correção no repositório e fornece as instruções de teste ao usuário.
+9. Conduzir a validação guiada: aguardar o resultado do reteste relatado pelo usuário; se não confirmar sucesso, ajustar a correção e repetir até a consolidação.
+10. Propor a observabilidade pontual a ser adicionada no trecho corrigido e a consulta DQL para validar a correção em homologação.
+11. Atualizar o report com o problema, a causa raiz, a correção aplicada e a observabilidade introduzida, em texto pronto para o relator e reaproveitável na mensagem de commit.
+12. Encaminhar ao `operador` o resultado consolidado a partir do asset [report.md](../assets/report.md), preservando títulos e estrutura.
+13. Aguardar a confirmação do `operador` com o caminho e o status persistido; então retornar o resultado ao Donda.
 
 ## Regras
 
 - O agente não acessa o Dynatrace diretamente; toda consulta DQL é entregue ao usuário para execução manual e o resultado retorna colado no chat.
 - Quando o serviço identificado como causa raiz não pertencer à squad, não implementar correção; registrar a triagem e delegar.
 - Quando pertencer à squad, o `dev-analista` pode reproduzir o erro localmente e propor a alteração; a implementação no repositório só ocorre após autorização explícita do usuário para aquela alteração específica.
-- A análise deve usar a branch `main`; a correção deve usar `feature/fix-<jira-id>` quando o Jira fornecer o ID ou, provisoriamente, `feature/fix-<titulo-curto>` local.
 - Após implementar, o `dev-analista` conduz a validação guiada com o usuário até a correção ser consolidada; não declarar sucesso sem confirmação do usuário.
 - Não executar deploy nem homologação; essas etapas permanecem manuais.
 - O `operador` persiste o artefato usando o asset; não complementa nem altera a análise recebida.

@@ -18,17 +18,14 @@ Mapeamento de fluxo de um microserviço ou lib
 
 ## Contratos
 
-- Request de entrada: `<método, caminho, query, headers, content type e corpo conforme expostos>`
-- Response de saída: `<status, headers, content type e corpo conforme expostos>`
-- Chamadas downstream: `<serviço/operação e request/response observados>`
+    `<corpo da requisição>`
+    `<resposta da requisição>`
 
-## Chamada cURL observada
+## Chamada cURL (Bruno)
 
-Incluir um comando cURL completo e copiável para cada endpoint, com método, URL, query e headers necessários. Quando houver corpo, incluir no cURL o `Content-Type` e o corpo com os campos e valores conforme os exemplos do repositório. Para valores dinâmicos, usar placeholder descritivo e indicar de onde obtê-lo, como o token retornado pelo login ou recebido por e-mail. Quando não houver corpo, declarar isso e não incluir `-d`. Swagger/OpenAPI é fonte complementar opcional: consultar se existir, sem bloquear a análise quando estiver ausente; se divergir do código, registrar a divergência e priorizar o comportamento confirmado no código. Se não houver informação suficiente para montar a chamada, registrar `NAO LOCALIZADO`.
-
-```sh
-<chamada cURL conforme exemplo localizado>
-```
+    ```sh
+    <chamada cURL conforme exemplo localizado>
+    ```
 
 ## Fluxo interno
 
@@ -38,23 +35,31 @@ Descrever em ordem o processamento desde a entrada até o retorno. Incluir valid
 
 Representar a entrada, os passos internos relevantes, decisões, comunicações, caminhos de erro e retorno.
 
-```mermaid
-flowchart TD
-    Entrada[Endpoint ou operacao de entrada] --> Processamento[Etapas confirmadas no codigo]
-    Processamento --> Retorno[Retorno observado]
-```
+    ```mermaid
+    flowchart TD
+        Entrada[Endpoint ou operacao de entrada] --> Processamento[Etapas confirmadas no codigo]
+        Processamento --> Retorno[Retorno observado]
+    ```
 
 ## Diagrama de Sequencia
 
 Representar participantes, chamadas, respostas e retornos na ordem observada no código. Incluir caminhos de erro quando identificáveis.
 
-```mermaid
-sequenceDiagram
-    actor Cliente
-    participant Entrada as Endpoint ou operacao
-    Cliente->>Entrada: Requisicao
-    Entrada-->>Cliente: Response observada
-```
+    ```mermaid
+    sequenceDiagram
+        actor Cliente
+        participant Entrada as Endpoint ou operacao
+        Cliente->>Entrada: Requisicao
+        Entrada-->>Cliente: Response observada
+    ```
+
+## Comunicações e dependências
+
+Listar serviços, bibliotecas, eventos, estados e processos assíncronos ou externos identificados, mantendo cada processo assíncrono ou externo separado do fluxo principal.
+
+- Serviços e bibliotecas envolvidos: `<nome e uso no fluxo; NAO VERIFICADO se a biblioteca não estiver clonada>`
+- Eventos e estados: `<evidências ou NAO LOCALIZADO>`
+- Processos assíncronos ou externos: `<nome, gatilho e retorno; ou NAO LOCALIZADO>`
 
 ## Erros e excecoes
 
@@ -63,14 +68,3 @@ sequenceDiagram
 ## Observabilidade
 
 - Logs, métricas, traces e identificadores de correlação encontrados: `<evidências ou NAO LOCALIZADO>`
-
-## Referencias do codigo
-
-|Arquivo e linha|Papel no fluxo|
-|---|---|
-|||
-
-## Pendencias e limites do mapeamento
-
-- Informação não confirmada: `<informação e motivo>`
-- Próxima evidência necessária: `<evidência ou Nao aplicavel>`

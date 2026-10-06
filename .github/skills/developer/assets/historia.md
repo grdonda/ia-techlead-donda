@@ -5,9 +5,9 @@ etapa: historia
 status: pendente
 data-criacao: <AAAA-MM-DD HH:mm>
 data-atualizacao: <AAAA-MM-DD HH:mm>
-responsavel: pm
+responsavel: developer
 origem: <caminho-do-diagnostico>
-publicacao: <aguardando PM|publicada|nao aplicavel>
+publicacao: <aguardando Developer|publicada|nao aplicavel>
 ---
 
 # Historia

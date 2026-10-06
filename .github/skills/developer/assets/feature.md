@@ -5,7 +5,7 @@ status: pendente
 prontidao: PENDENTE
 data-criacao: <AAAA-MM-DD HH:mm>
 data-atualizacao: <AAAA-MM-DD HH:mm>
-responsavel: pm
+responsavel: developer
 ---
 
 # Feature: Titulo

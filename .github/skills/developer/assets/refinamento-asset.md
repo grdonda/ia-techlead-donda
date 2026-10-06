@@ -5,7 +5,7 @@ etapa: refinamento
 status: pendente
 data-criacao: <AAAA-MM-DD HH:mm>
 data-atualizacao: <AAAA-MM-DD HH:mm>
-responsavel: pm
+responsavel: developer
 origem: <relato-local|historia-oficial>
 ---
 
@@ -14,7 +14,7 @@ origem: <relato-local|historia-oficial>
 ## Status
 
 - Estado: `<status global definido pelo operador>`
-- Responsável: PM
+- Responsável: Developer
 - Última atualização: `<AAAA-MM-DD HH:mm>`
 
 ## Fontes Consultadas

@@ -58,7 +58,7 @@ Saída:
 
 ## Regras
 
-- A análise de PM é factual, read-only e limitada ao refinamento.
+- A análise de produto do Developer é factual, read-only e limitada ao refinamento.
 - Não desenhar solução técnica, não implementar e não fazer análise técnica profunda.
 - Não substituir o `tech-review` do Developer.
 - O baseline de serviço serve apenas para comparação factual com o comportamento desejado e para enriquecer critérios de aceite rastreáveis à história ou ao Figma.

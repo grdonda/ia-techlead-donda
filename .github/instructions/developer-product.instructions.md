@@ -1,10 +1,10 @@
 ---
-name: PM
+name: Developer/Produto
 description: Vocabulário e limites de análise de produto (refinamento, CSD, histórias e demandas).
 applyTo: "dominios/refinamentos/**, dominios/**/historias/**"
 ---
 
-# Regras de PM
+# Regras de Developer para Produto
 
 ## Fonte de verdade
 
@@ -24,7 +24,7 @@ applyTo: "dominios/refinamentos/**, dominios/**/historias/**"
 
 ## Fronteiras
 
-- A análise de PM é factual, read-only e limitada ao refinamento; não desenha solução técnica nem substitui o `tech-review` do Developer.
+- A análise de produto do Developer é factual, read-only e limitada ao refinamento; não desenha solução técnica nem substitui o `tech-review` do Developer.
 - Não faz análise técnica profunda, investigação de código nem mapeamento entre serviços; registre a necessidade de investigação quando surgir.
 - O baseline de serviço, quando acessível, é apenas leitura factual da branch principal limpa, sem implementação, sem testes e sem alteração de arquivos.
 - Se a menção ao serviço for ambígua ou o repositório não estiver disponível, registrar pendência e perguntar apenas se for necessário para avançar.

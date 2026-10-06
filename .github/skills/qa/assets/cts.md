@@ -1,55 +1,28 @@
----
-projeto: <PROJETO>
-jira: <JIRA-ID>
-etapa: cts
-status: pendente
-data-criacao: <AAAA-MM-DD HH:mm>
-data-atualizacao: <AAAA-MM-DD HH:mm>
-responsavel: qa
----
+# CTS - Cenario de teste
 
-# CT00N - TITULO
+## Titulo
 
-Historia: `<JIRA-ID>`
-
-## Summary
-
-```
-CT001 - <TITULO>
-```
+    `<titulo do cenario de teste>`
 
 ## Descrição
 
-```
-descrição da cobertura do teste
-```
-
-## Pre-requisitos
-
-- todos e pre-requisitos quando houver ou N/A
+    `<titulo do cenario de teste>`
 
 ## Gherkin
 
-```gherkin
-Feature: <nome da funcionalidade>
+    ```mermaid
+    Gherkin
+    Scenario: Titulo do cenário
+    ```
 
-	Scenario: <nome do cenário>
-		Given <condição>
-		When <ação>
-		Then <resultado>
-```
+## Cucumber
 
-## Cucumber (xray)
+    ```mermaid
+    Given []
+    When []
+    Then []
+    ```
 
-```gherkin
-Given <condição>
-When <ação>
-Then <resultado>
-```
+## Requisitos atendidos
 
-## Outras informações para cadastro
-
-- Company: Bradesco
-- Squad: EQUALIPJ
-- Prioridade: HIGH
-- Issue: `<JIRA-ID>`
+    `<requisitos da historia lida atendidos>`

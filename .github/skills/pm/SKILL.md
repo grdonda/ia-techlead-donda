@@ -1,47 +1,28 @@
 ---
 name: pm
-description: "Use ao refinar uma história Jira local, organizar sua compreensão, identificar ambiguidades, lacunas, referências ausentes, suposições ou dúvidas e preparar uma CSD para esclarecimento do PM."
-argument-hint: "Projeto e JIRA-ID"
-user-invocable: true
-disable-model-invocation: false
+description: Processos de Product Management. Use para refinar um relato ou história (User Story e refinamento) e para montar a matriz CSD de certezas, suposições e dúvidas.
+argument-hint: "Processo (refinamento, csd) e fonte (relato local ou JIRA-ID)"
+user-invocable: false
 ---
 
 # PM
 
-- Refine a história `dominios/<projeto>/historias/<JIRA-ID>/<JIRA-ID>.md` local.
-- Gere a matriz CSD quando houver suposições ou dúvidas.
-- Avalie e inventarie os anexos antes do refinamento ou da CSD quando ainda não houver inventário concluído.
-- Aguarde instruções para refazer o processo se necessário
+Executor: [pm-analista](../../agents/pm.analista.agent.md).
 
-## Subagentes
+## Processos
 
-- `pm-analista`: responsável por analisar a história e organizar a informação, identificar suposições, dúvidas.
-- `pm-operador`: responsável por garantir que todas as informações analisadas sejam corretamente documentadas.
+### refinamento
 
-## Procedimento
+- Usar quando: transformar relato ou história em User Story e refinamento.
+- Saída: `historia.md` e `refinamento.md` no cenário de relato, ou `<jira-id>_refinamento.md` no cenário de história.
+- Referência: [refinamento-referencia](./references/refinamento-referencia.md).
+- Assets: [historia](./assets/historia.md), [refinamento-asset](./assets/refinamento-asset.md).
+- O fluxo pode ler Figma e baseline observável de serviço quando isso estiver anexado, mencionado e acessível, e pode depender da sincronização da branch `main` do serviço relevante antes da leitura read-only do baseline.
+- Os nomes canônicos do fluxo são [refinamento-referencia](./references/refinamento-referencia.md) e [refinamento-asset](./assets/refinamento-asset.md).
 
-1. Confirme o arquivo `dominios/<projeto>/historias/<JIRA-ID>/<JIRA-ID>.md`; se o projeto ou a história não forem informados, solicite-os antes de prosseguir.
-2. Interprete a solicitação:
-   - `avaliar anexos`: execute o workflow de avaliação de anexos.
-   - `refinamento`: execute o workflow de refinamento.
-   - `analisar` ou `CSD`: execute o workflow de CSD.
-3. Para `refinamento` ou `CSD`, reutilize o inventário de anexos concluído; se ele não existir, solicite a execução de `avaliar anexos` antes de continuar.
-4. No workflow selecionado, acione o `pm-analista` para analisar a história.
-5. Entregue a análise do `pm-analista` ao `pm-operador` para preencher e salvar o artefato.
-6. Valide a existência do artefato no diretório correspondente e informe ao usuário o término.
+### csd
 
-
-## Regras e Limites
-
-- A história `dominios/<projeto>/historias/<JIRA-ID>/<JIRA-ID>.md` deve existir, é imutável, e não deve ser alterada.
-- Mantenha informações não confirmadas classificadas como suposição ou dúvida.
-- Siga rigorosamente os formatos e procedimentos definidos nos workflows de refinamento e CSD.
-- Não altere o conteúdo da história original `dominios/<projeto>/historias/<JIRA-ID>/<JIRA-ID>.md`.
-
-## Status e Continuidade
-
-- Leia o artefato mais recente antes de iniciar ou retomar uma etapa.
-- Ao iniciar, marque `status: em andamento`; ao depender do usuário, use `aguardando usuário`.
-- Use `bloqueado` para pré-requisito ausente e `desatualizado` quando a entrada tiver mudado.
-- Ao concluir, marque `concluído`, atualize `data-atualizacao` e registre pendências remanescentes.
-- Salve o artefato e pare. Não acione TechLead, DBA ou outra skill automaticamente.
+- Usar quando: registrar certezas, suposições, dúvidas, lacunas, conflitos e referências de um conteúdo já existente.
+- Saída: matriz CSD (`dominios/<projetos>/historias/<jira-id>/refinamento/<jira-id>_csd.md` para história ou `dominios/refinamentos/<assuntos>/csd.md` para demanda ad-hoc).
+- Referência: [csd](./references/csd.md).
+- Asset: [csd](./assets/csd.md).

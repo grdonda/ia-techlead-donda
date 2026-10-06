@@ -1,2 +1,4 @@
 .vscode
 .idea
+/dominios/srvs/analises/fluxo/microservice_auth_java/
+/dominios/srvs/microservice_auth_java/

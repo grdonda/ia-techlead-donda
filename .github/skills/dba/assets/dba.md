@@ -56,7 +56,7 @@ Gerado conforme o engine identificado ou informado pelo usuário. O usuário exe
 
 Gerar somente quando o banco for SQL Server e o pedido se beneficiar de um notebook para outros desenvolvedores. Células prontas para execução manual; o agente não executa nem se conecta a uma base real.
 
-- Caminho: `<contexto/db/<db-nome>/notebook-<data>.ipynb ou Nao aplicavel>`
+- Caminho: `<dominios/contexto/db/<db-nome>/notebook-<data>.ipynb, dominios/<projetos>/contexto/db/<db-nome>/notebook-<data>.ipynb, dominios/<projetos>/historias/<jira-id>/contexto/db/<db-nome>/notebook-<data>.ipynb ou Nao aplicavel>`
 
 ## Pendências e limites
 

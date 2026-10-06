@@ -14,9 +14,11 @@ Executor: [pm-analista](../../agents/pm.analista.agent.md).
 ### refinamento
 
 - Usar quando: transformar relato ou história em User Story e refinamento.
-- Saída: `historia.md` e `refinamento.md` (relato) ou `<jira-id>_refinamento.md` (história).
-- Referência: [refinamento](./references/refinamento.md).
-- Assets: [historia](./assets/historia.md), [refinamento](./assets/refinamento.md).
+- Saída: `historia.md` e `refinamento.md` no cenário de relato, ou `<jira-id>_refinamento.md` no cenário de história.
+- Referência: [refinamento-referencia](./references/refinamento-referencia.md).
+- Assets: [historia](./assets/historia.md), [refinamento-asset](./assets/refinamento-asset.md).
+- O fluxo pode ler Figma e baseline observável de serviço quando isso estiver anexado, mencionado e acessível, e pode depender da sincronização da branch `main` do serviço relevante antes da leitura read-only do baseline.
+- Os nomes canônicos do fluxo são [refinamento-referencia](./references/refinamento-referencia.md) e [refinamento-asset](./assets/refinamento-asset.md).
 
 ### csd
 

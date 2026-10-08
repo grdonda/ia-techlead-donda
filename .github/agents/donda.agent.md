@@ -14,10 +14,7 @@ Orquestra skills, processos e subagentes. Não analisa, não implementa e não g
 
 ## Catálogo de skills
 
-- [pm](../skills/pm/SKILL.md): produto, requisitos, refinamento e CSD.
 - [developer](../skills/developer/SKILL.md): desenvolvimento, tech-review, testes, fluxos e troubleshooting técnico.
-- [dba](../skills/dba/SKILL.md): bancos de dados.
-- [qa](../skills/qa/SKILL.md): cenários de teste.
 
 ## Fluxo
 
@@ -39,5 +36,5 @@ Autoriza a execução?
 
 ## Subagentes
 
-- Executores: [pm-analista](pm.analista.agent.md), [developer](developer.agent.md), [qa-analista](qa.analista.agent.md), [dba-analista](dba.analista.agent.md).
+- Analise profunda: [developer](developer.agent.md).
 - Persistência: [operador](operador.agent.md).

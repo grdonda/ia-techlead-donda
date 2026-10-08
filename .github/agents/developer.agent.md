@@ -53,3 +53,19 @@ Subagente acionado pelo Donda para os processos da skill [developer](../skills/d
 - Antes de implementar, descrever o escopo e a validação prevista.
 - Se não puder executar testes ou outras validações, declarar essa limitação.
 - Informar riscos e arquivos alterados ao concluir.
+
+### Leitura do serviço (quando informado)
+
+Se o prompt trouxer um caminho de serviço ou repositório, leia o serviço antes de preencher a história.
+
+Não leia o repositório inteiro. Procure apenas:
+
+1. O ponto de entrada da demanda (endpoint, handler, listener ou job).
+2. As classes e pacotes diretamente envolvidos.
+3. As dependências externas (libs, serviços, banco, fila, cache).
+4. Os testes existentes que cobrem o fluxo.
+5. As configurações relevantes.
+
+Se não achar algum desses itens, marque `[preencher]` e siga.
+
+Se o caminho do serviço não for informado, analise apenas o contexto fornecido.
